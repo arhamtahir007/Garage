@@ -3,4 +3,4 @@ project(Garage)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Garage main.cpp Vehicle.cpp Vehicle.h)
+add_executable(Garage main.cpp Vehicle.cpp Vehicle.h SportsCar.cpp SportsCar.h)
