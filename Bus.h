@@ -7,5 +7,8 @@ class Bus : Vehicle
 {
 };
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 #endif //GARAGE_BUS_H
