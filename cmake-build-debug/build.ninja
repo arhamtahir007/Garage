@@ -61,6 +61,12 @@ build CMakeFiles/Garage.dir/Vehicle.cpp.obj: CXX_COMPILER__Garage_Debug C$:/User
   OBJECT_DIR = CMakeFiles\Garage.dir
   OBJECT_FILE_DIR = CMakeFiles\Garage.dir
 
+build CMakeFiles/Garage.dir/SportsCar.cpp.obj: CXX_COMPILER__Garage_Debug C$:/Users/HP/Documents/GitHub/Garage/SportsCar.cpp || cmake_object_order_depends_target_Garage
+  DEP_FILE = CMakeFiles\Garage.dir\SportsCar.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\Garage.dir
+  OBJECT_FILE_DIR = CMakeFiles\Garage.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Garage
@@ -69,7 +75,7 @@ build CMakeFiles/Garage.dir/Vehicle.cpp.obj: CXX_COMPILER__Garage_Debug C$:/User
 #############################################
 # Link the executable Garage.exe
 
-build Garage.exe: CXX_EXECUTABLE_LINKER__Garage_Debug CMakeFiles/Garage.dir/main.cpp.obj CMakeFiles/Garage.dir/Vehicle.cpp.obj
+build Garage.exe: CXX_EXECUTABLE_LINKER__Garage_Debug CMakeFiles/Garage.dir/main.cpp.obj CMakeFiles/Garage.dir/Vehicle.cpp.obj CMakeFiles/Garage.dir/SportsCar.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Garage.dir
