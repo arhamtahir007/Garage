@@ -18,6 +18,8 @@ protected:
     string numPlate;
     string color;
     string transmissionType;
+    int fuelTankCapacity;
+    int groundClearance;
 public:
     Vehicle(){
         noOfDoors = 0;
@@ -27,5 +29,7 @@ public:
         numPlate = "";
         color = "";
         transmissionType = "";
+        fuelTankCapacity = 0;
+        groundClearance = 0;
     }
 };
