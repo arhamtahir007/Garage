@@ -20,6 +20,7 @@ protected:
     string color;
     string transmissionType;
     string* fault;
+    string vehicleType;
 public:
     Vehicle(){
         noOfDoors = 0;
@@ -30,5 +31,6 @@ public:
         color = "";
         transmissionType = "";
         fault = nullptr;
+        vehicleType = "";
     }
 };

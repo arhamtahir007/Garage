@@ -19,5 +19,6 @@ public:
     }
 
     friend ostream &operator << (ostream&,const SportsCar&);
+    friend istream &operator >> (istream&,SportsCar&);
 
 };
