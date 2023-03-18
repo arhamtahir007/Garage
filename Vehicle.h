@@ -6,7 +6,7 @@
 #define GARAGE_VEHICLE_H
 
 #endif //GARAGE_VEHICLE_H
-#pragma once
+//#pragma once
 #include<iostream>
 using namespace std;
 
@@ -35,5 +35,5 @@ public:
     }
 
     void generalInput();
-    void generalOutput();
+    void generalOutput() const;
 };

@@ -7,7 +7,7 @@
 
 #endif //GARAGE_SPORTSCAR_H
 #include "Vehicle.h"
-#pragma once
+//#pragma once
 
 class SportsCar:public Vehicle{
     string turboType;

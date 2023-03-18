@@ -26,10 +26,10 @@ void Vehicle::generalInput(){
     cin>>color;
 }
 
-void Vehicle::generalOutput() {
+void Vehicle::generalOutput() const {
     cout<<"\nVehicle Type: "<<vehicleType<<endl;
-    cout<<"Engine Capacity: "<<engineCC<<endl;
-    cout<<"Transmission Type: "<<engineCC<<endl;
+    cout<<"Engine Capacity: "<<engineCC<<" CC"<<endl;
+    cout<<"Transmission Type: "<<transmissionType<<endl;
     cout<<"Number of Doors: "<<noOfDoors<<endl;
     cout<<"Number of Seats: "<<noOfSeats<<endl;
     cout<<"Number of Tyres: "<<noOfTyres<<endl;
