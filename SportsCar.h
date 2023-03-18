@@ -16,6 +16,7 @@ public:
     SportsCar(){
         turboType = "";
         spoilerType = "";
+        vehicleType = "Sports Car";
     }
 
     friend ostream &operator << (ostream&,const SportsCar&);

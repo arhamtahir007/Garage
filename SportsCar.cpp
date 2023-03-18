@@ -9,5 +9,5 @@ ostream &operator << (ostream& o,const SportsCar& temp) {
 }
 
 istream &operator>>(istream& i, SportsCar& temp) {
-    cout<<"Enter no "
+    temp.generalInput();
 }

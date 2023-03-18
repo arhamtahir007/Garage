@@ -33,4 +33,7 @@ public:
         fault = nullptr;
         vehicleType = "";
     }
+
+    void generalInput();
+    void generalOutput();
 };
