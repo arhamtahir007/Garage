@@ -19,8 +19,7 @@ protected:
     string numPlate;
     string color;
     string transmissionType;
-    int fuelTankCapacity;
-    int groundClearance;
+    string* fault;
 public:
     Vehicle(){
         noOfDoors = 0;
@@ -30,7 +29,6 @@ public:
         numPlate = "";
         color = "";
         transmissionType = "";
-        fuelTankCapacity = 0;
-        groundClearance = 0;
+        fault = nullptr;
     }
 };
