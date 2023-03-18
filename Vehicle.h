@@ -1,11 +1,7 @@
-//
-// Created by HP on 3/18/2023.
-//
-
 #ifndef GARAGE_VEHICLE_H
 #define GARAGE_VEHICLE_H
 
-#endif //GARAGE_VEHICLE_H
+
 #pragma once
 #include<iostream>
 using namespace std;
@@ -34,3 +30,6 @@ public:
         groundClearance = 0;
     }
 };
+
+
+#endif //GARAGE_VEHICLE_H
