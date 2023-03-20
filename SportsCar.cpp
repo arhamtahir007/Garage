@@ -6,8 +6,8 @@
 
 ostream &operator << (ostream& o,const SportsCar& temp) {
     temp.generalOutput();
-    o<<"Turbo Type: "<<temp.turboType;
-    o<<"Spoiler Type: "<<temp.spoilerType;
+    o<<"Turbo Type: "<<temp.turboType<<endl;
+    o<<"Spoiler Type: "<<temp.spoilerType<<endl;
     return o;
 }
 
