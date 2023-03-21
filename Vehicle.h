@@ -6,7 +6,7 @@
 #define GARAGE_VEHICLE_H
 
 #endif //GARAGE_VEHICLE_H
-#pragma once
+//#pragma once
 #include<iostream>
 using namespace std;
 
@@ -16,10 +16,12 @@ protected:
     int noOfTyres;
     int noOfSeats;
     int engineCC;
+    int noOfFaults;
     string numPlate;
     string color;
     string transmissionType;
     string* fault;
+    string vehicleType;
 public:
     Vehicle(){
         noOfDoors = 0;
@@ -30,5 +32,13 @@ public:
         color = "";
         transmissionType = "";
         fault = nullptr;
+        noOfFaults = 0;
+        vehicleType = "";
     }
+    ~Vehicle(){
+        delete[] fault;
+    }
+
+    void generalInput();
+    void generalOutput() const;
 };
