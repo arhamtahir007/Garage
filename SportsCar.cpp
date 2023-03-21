@@ -13,7 +13,7 @@ ostream &operator << (ostream& o,const SportsCar& temp) {
 
 istream &operator>>(istream& i,SportsCar& temp) {
     temp.generalInput();
-
+//hmmmm
     cout<<"Enter Turbo Type:\n";
     i>>temp.turboType;
     cout<<"Enter Spoiler Type:\n";
