@@ -24,6 +24,14 @@ void Vehicle::generalInput(){
     cin>>numPlate;
     cout<<"Enter Color:\n";
     cin>>color;
+    cout<<"Enter Number of Faults:\n";
+    cin>>noOfFaults;
+    fault = new string [noOfFaults];
+    cin.ignore();
+    for (int i = 0; i < noOfFaults; ++i) {
+        cout<<"Enter briefly about Fault "<<i+1<<" in "<<vehicleType<<":\n";
+        getline(cin,fault[i]);
+    }
 }
 
 void Vehicle::generalOutput() const {
@@ -34,4 +42,8 @@ void Vehicle::generalOutput() const {
     cout<<"Number of Seats: "<<noOfSeats<<endl;
     cout<<"Number of Tyres: "<<noOfTyres<<endl;
     cout<<"Registration Number: "<<numPlate<<endl;
+    for (int i = 0; i < noOfFaults; ++i) {
+        cout<<"Fault no "<<i+1<<":\n";
+        cout<<fault[i]<<endl;
+    }
 }

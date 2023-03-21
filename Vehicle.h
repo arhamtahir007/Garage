@@ -16,6 +16,7 @@ protected:
     int noOfTyres;
     int noOfSeats;
     int engineCC;
+    int noOfFaults;
     string numPlate;
     string color;
     string transmissionType;
@@ -31,7 +32,11 @@ public:
         color = "";
         transmissionType = "";
         fault = nullptr;
+        noOfFaults = 0;
         vehicleType = "";
+    }
+    ~Vehicle(){
+        delete[] fault;
     }
 
     void generalInput();
