@@ -1,5 +1,6 @@
 #include "Person.h"
 int main(){
     Person obj;
-    cin>>obj;
+    //cin>>obj;
+    obj.ReadingFileData();
 }

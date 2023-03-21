@@ -1,2 +1,1 @@
-FirstName:   qwerty  SecondName:asdf ContactNo: 123456 Numberplate:q123 City: qwerty  St.no: 1   h.no:56  Area: asxdx
-FirstName:   q  SecondName:w ContactNo: w Numberplate:w City: s  St.no: 0   h.no:0  Area: s
+   qwerty  asdf  123456 q123 qwerty  1   56   asxdx

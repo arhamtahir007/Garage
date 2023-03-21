@@ -102,8 +102,8 @@ void Person::filingToStore(){
 
     object.open("person.txt",ios::app);
 
-    object<<"FirstName: "<<"  "<<getFirstName()<<"  "<<"SecondName:"<<getSecondName()<<" "<<"ContactNo: "<<getContactNo()<<" "<<"Numberplate:"<<getNumberplate();
-    object<<" City:"<<" "<<address.getCityName()<<"  "<<"St.no: "<<address.getStreetNumber()<<"  "<<" h.no:"<<address.getHouseNumber()<<"  "<<"Area: "<<address.GetArea();
+    object<<" "<<getFirstName()<<" "<<getSecondName()<<" "<<getContactNo()<<" "<<getNumberplate();
+    object<<" "<<address.getCityName()<<" "<<address.getStreetNumber()<<" "<<address.getHouseNumber()<<"  "<<address.GetArea();
     object<<endl;
 
 
@@ -111,3 +111,40 @@ void Person::filingToStore(){
 
 
 }
+
+void Person::ReadingFileData() {
+    //  ifstream object;
+    Person y;
+    ifstream object("person.txt");
+    if (!object) {
+        cout << "no  such file  exists";
+
+    } else {
+        string value;
+        cout << "enter first name" << endl;
+        cin >> value;
+        while (!object.eof()) {
+            int val;
+            string read;
+            object >> y.first_name;
+            object >> y.second_name;
+            object >> y.contact_no;
+            object >> y.number_plate;
+            object >> read;
+            y.address.setCityName(read);
+            object >> val;
+            y.address.setStreetNumber(val);
+            object >> val;
+            y.address.setHouseNumber(val);
+            object >> read;
+            y.address.setArea(read);
+            if (y.first_name == value) {
+                cout << y;
+             break;
+            }
+
+
+        }
+    }
+}
+

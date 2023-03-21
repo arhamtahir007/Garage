@@ -34,6 +34,7 @@ public:
     string  getContactNo();
     string  getNumberplate();
     void filingToStore();
+    void ReadingFileData();
     friend istream &operator >>(istream& input,Person& person);
     friend ostream &operator <<(ostream& output,Person& person);
 
