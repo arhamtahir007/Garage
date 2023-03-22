@@ -19,7 +19,15 @@ public:
         vehicleType = "Sports Car";
     }
 
+    void vehicleReturn();
+
+    void saveData();
+
+    friend void readData();
+
     friend ostream &operator << (ostream&,const SportsCar&);
     friend istream &operator >> (istream&,SportsCar&);
 
 };
+
+void readData();
