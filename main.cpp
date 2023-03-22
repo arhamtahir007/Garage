@@ -1,8 +1,12 @@
 #include "SportsCar.h"
 
 int main(){
-    SportsCar s;
+    SportsCar s,r;
+    Vehicle* v = &s;
     cin>>s;
-    cout<<s;
+    v->vehicleReturn();
+    s.saveData();
+
+    readData();
 
 }

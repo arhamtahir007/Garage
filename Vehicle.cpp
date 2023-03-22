@@ -47,3 +47,5 @@ void Vehicle::generalOutput() const {
         cout<<fault[i]<<endl;
     }
 }
+
+
