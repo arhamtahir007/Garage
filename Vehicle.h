@@ -17,11 +17,11 @@ protected:
     int noOfTyres;
     int noOfSeats;
     int engineCC;
-    int noOfFaults;
+
     string numPlate;
     string color;
     string transmissionType;
-    string* fault;
+    string fault;
     string vehicleType;
 public:
     Vehicle(){
@@ -32,12 +32,8 @@ public:
         numPlate = "";
         color = "";
         transmissionType = "";
-        fault = nullptr;
-        noOfFaults = 0;
+        fault = "";
         vehicleType = "";
-    }
-    ~Vehicle(){
-        delete[] fault;
     }
 
     void generalInput();
