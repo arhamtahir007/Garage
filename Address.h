@@ -19,8 +19,8 @@ private:
 
 public:
     Address(){
-        city_name=" ";
-        area=" ";
+        city_name="";
+        area="";
         street_number=0;
         house_number=0;
     }
@@ -28,10 +28,10 @@ public:
     void setArea(string a);
     void setStreetNumber(int c);
     void setHouseNumber(int y);
-    string getCityName();
-    string GetArea();
-    int getStreetNumber();
-    int getHouseNumber();
+    string getCityName() const;
+    string getArea() const;
+    int getStreetNumber() const;
+    int getHouseNumber() const;
 
 };
 

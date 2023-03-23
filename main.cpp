@@ -7,6 +7,6 @@ int main(){
     v->vehicleReturn();
     s.saveData();
 
-    readData();
+    readDataSpecific();
 
 }
