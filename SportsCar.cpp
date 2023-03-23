@@ -52,35 +52,32 @@ void SportsCar::vehicleReturn() {
 
 
 void SportsCar::saveData() {
-    fstream in("Vehicle Record.txt",ios::out | ios::app);
-    in<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "<<noOfFaults<<" "<<color<<" "<<transmissionType<<" "<<vehicleType<<" "<<turboType<<" "<<spoilerType<<" ";
-    for (int i = 0; i < noOfFaults; ++i) {
-        in<<fault[i]<<endl;
-    }
+    fstream in("SportsCar Record.txt",ios::out | ios::app);
+    in<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "<<color<<" "
+    <<transmissionType<<" "<<vehicleType<<" "<<turboType<<" "<<spoilerType<<" "<<fault;
     in.close();
 }
 
-void readData() {
+void readDataSpecific() {
     SportsCar sc;
     string counter;
-    fstream out("Vehicle Record.txt", ios::in);
+    fstream out("SportsCar Record.txt", ios::in);
     int noOfEntries = 0;
     while (!out.eof()) {
         getline(out, counter);
         noOfEntries++;
     }
+    out.close();
     string temp, type;
     cout << "Enter registration number:\n";
     cin >> temp;
-    out.close();
-    out.open("Vehicle Record.txt", ios::in);
-    for (int i = 0; i < noOfEntries / 2; ++i) {
+    out.open("SportsCar Record.txt", ios::in);
+    for (int i = 0; i < noOfEntries; ++i) {
         out >> sc.numPlate;
         out >> sc.noOfDoors;
         out >> sc.noOfTyres;
         out >> sc.noOfSeats;
         out >> sc.engineCC;
-        out >> sc.noOfFaults;
         out >> sc.color;
         out >> sc.transmissionType;
         out >> sc.vehicleType;
@@ -88,15 +85,11 @@ void readData() {
         out >> sc.turboType;
         out >> sc.spoilerType;
         sc.vehicleType = sc.vehicleType + " " + type;
-        sc.fault = new string[sc.noOfFaults];
-        for (int j = 0; j < sc.noOfFaults; ++j) {
-            getline(out, sc.fault[i]);
-        }
+        getline(out, sc.fault);
         if (sc.numPlate == temp) {
             cout << sc;
             return;
         }
-
     }
     cout << "Record Not Found.\n";
 }

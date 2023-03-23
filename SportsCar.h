@@ -23,11 +23,11 @@ public:
 
     void saveData();
 
-    friend void readData();
+    friend void readDataSpecific();
 
     friend ostream &operator << (ostream&,const SportsCar&);
     friend istream &operator >> (istream&,SportsCar&);
 
 };
 
-void readData();
+void readDataSpecific();

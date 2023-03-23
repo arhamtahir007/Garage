@@ -9,35 +9,26 @@
 #include "fstream"
 
 class Person {
-private:
-    string first_name ;
-    string second_name ;
-    string number_plate;
+protected:
+    string first_name;
+    string second_name;
     string  contact_no;
-    //  Address address;
+    Address address;
 public:
     Person(){
-        first_name= " ";
-        second_name=" ";
-        number_plate=" ";
-        contact_no=" ";
-
+        first_name= "";
+        second_name="";
+        contact_no="";
     }
-    Address address;
 
-    string  setFirstName(string n);
-    string  setSecondName(string m);
-    string  setNumberplate(string x);
-    string  setContactNo(string y);
-    string  getFirstName();
-    string  getSecondName();
-    string  getContactNo();
-    string  getNumberplate();
-    void filingToStore();
-    void ReadingFileData();
-    friend istream &operator >>(istream& input,Person& person);
-    friend ostream &operator <<(ostream& output,Person& person);
+    string setFirstName(string n);
+    string getFirstName();
 
+    string setSecondName(string m);
+    string getSecondName();
+
+    string setContactNo(string y);
+    string getContactNo();
 
 };
 
