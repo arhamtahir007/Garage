@@ -4,9 +4,29 @@
 
 #ifndef GARAGE_HATCHBACK_H
 #define GARAGE_HATCHBACK_H
+#include "Vehicle.h"
+#include "fstream"
+class Hatchback: public Vehicle {
+protected:
+    int airBags;
+    string powerLocks;
+
+public:
+    Hatchback()
+    {
+        airBags=0;
+        powerLocks=" ";
+        vehicleType="HatchBack";
+
+    }
 
 
-class Hatchback {
+    void vehicleReturn();  // virtual function by polymerization
+    void dataRecord(); // data record
+    void dataReading(); // data output
+
+    friend ostream &operator << (ostream& ,const Hatchback&); // operator overloading of hatchback
+    friend istream &operator >> (istream& ,Hatchback&);
 
 };
 

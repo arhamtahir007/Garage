@@ -2,5 +2,5 @@
 int main(){
     Person obj;
     //cin>>obj;
-    obj.ReadingFileData();
+    //obj.ReadingFileData();
 }
