@@ -6,7 +6,7 @@
 #define GARAGE_VEHICLE_H
 
 #endif //GARAGE_VEHICLE_H
-//#pragma once
+#pragma once
 #include<iostream>
 #include <fstream>
 using namespace std;
