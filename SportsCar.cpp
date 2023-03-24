@@ -11,7 +11,7 @@ ostream &operator << (ostream& o,const SportsCar& temp) {
     return o;
 }
 
-istream &operator>>(istream& i,SportsCar& temp) {
+istream &operator >> (istream& i,SportsCar& temp) {
     temp.generalInput();
     cout<<"Enter Turbo Type:\n";
     i>>temp.turboType;

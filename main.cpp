@@ -1,12 +1,12 @@
-#include "SportsCar.h"
+#include "LogIn.h"
 
 int main(){
-    SportsCar s,r;
-    Vehicle* v = &s;
-    cin>>s;
-    v->vehicleReturn();
-    s.saveData();
-
-    readDataSpecific();
-
+    int a = userLogIn();
+    if (a == 1 )
+    {
+        cout<< "all is good";
+    }
+    else{
+        return 0;
+    }
 }
