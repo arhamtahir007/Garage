@@ -14,7 +14,7 @@ istream & operator >>(istream& in ,Hatchback& obj){
     cout<<" enter number of airbags"<<endl;
     in>>obj.airBags;
 
-    cout<<" Enter type of Powerlocks"<<endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
+    cout<<" Enter type of Power locks"<<endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
 
     in>>obj.powerLocks;
     if(obj.powerLocks!=" single"&& obj.powerLocks!="Single"&&obj.powerLocks!=" dual"&& obj.powerLocks!="Dual")
@@ -24,21 +24,24 @@ istream & operator >>(istream& in ,Hatchback& obj){
     }
 
     while(true) {
-        if (obj.noOfDoors <= 0 || obj.noOfDoors == 4 || obj.noOfDoors >=4) {
+        if (obj.noOfDoors != 4) {
             cout << "Invalid Number of Doors, Enter again.\n";
             cout << "Enter no of Doors:\n";
             in >> obj.noOfDoors;
 
         }
-        break;
+        else
+            break;
     }
     while(true) {
-        if (obj.noOfSeats <= 0 || obj.noOfSeats == 5 || obj.noOfSeats > 6) {
+        if (obj.noOfSeats != 5) {
             cout << "Invalid Number of Seats, Enter again.\n";
             cout << "Enter no of Seats:\n";
             in >> obj.noOfSeats;
 
-        }break;
+        }
+        else
+            break;
     }
     while(true) {
         if (obj.noOfTyres != 4) {
@@ -46,7 +49,9 @@ istream & operator >>(istream& in ,Hatchback& obj){
             cout << "Enter no of Tyres:\n";
             in >> obj.noOfTyres;
 
-        }break;
+        }
+        else
+            break;
     }
     return in;
 }
