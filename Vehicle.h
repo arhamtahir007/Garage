@@ -1,7 +1,11 @@
+//
+// Created by HP on 3/18/2023.
+//
+
 #ifndef GARAGE_VEHICLE_H
 #define GARAGE_VEHICLE_H
 
-
+#endif //GARAGE_VEHICLE_H
 #pragma once
 #include<iostream>
 using namespace std;
@@ -15,8 +19,7 @@ protected:
     string numPlate;
     string color;
     string transmissionType;
-    int fuelTankCapacity;
-    int groundClearance;
+    string* fault;
 public:
     Vehicle(){
         noOfDoors = 0;
@@ -26,10 +29,6 @@ public:
         numPlate = "";
         color = "";
         transmissionType = "";
-        fuelTankCapacity = 0;
-        groundClearance = 0;
+        fault = nullptr;
     }
 };
-
-
-#endif //GARAGE_VEHICLE_H
