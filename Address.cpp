@@ -15,15 +15,15 @@ void  Address::setStreetNumber(int c){
 void Address::setHouseNumber(int y){
     house_number=y;
 }
-string Address:: getCityName(){
+string Address:: getCityName() const {
     return city_name;
 }
-string Address::GetArea(){
+string Address::getArea() const{
     return area;
 }
-int Address::getStreetNumber(){
+int Address::getStreetNumber() const{
     return street_number;
 }
-int Address::getHouseNumber(){
+int Address::getHouseNumber() const{
     return house_number;
 }

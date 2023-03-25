@@ -7,7 +7,7 @@
 
 #endif //GARAGE_SPORTSCAR_H
 #include "Vehicle.h"
-#pragma once
+//#pragma once
 
 class SportsCar:public Vehicle{
     string turboType;
@@ -16,8 +16,18 @@ public:
     SportsCar(){
         turboType = "";
         spoilerType = "";
+        vehicleType = "Sports Car";
     }
 
+    void vehicleReturn();
+
+    void saveData();
+
+    friend void readDataSpecific();
+
     friend ostream &operator << (ostream&,const SportsCar&);
+    friend istream &operator >> (istream&,SportsCar&);
 
 };
+
+void readDataSpecific();

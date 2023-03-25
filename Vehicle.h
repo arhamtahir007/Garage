@@ -8,6 +8,7 @@
 #endif //GARAGE_VEHICLE_H
 #pragma once
 #include<iostream>
+#include <fstream>
 using namespace std;
 
 class Vehicle{
@@ -16,10 +17,12 @@ protected:
     int noOfTyres;
     int noOfSeats;
     int engineCC;
+
     string numPlate;
     string color;
     string transmissionType;
-    string* fault;
+    string fault;
+    string vehicleType;
 public:
     Vehicle(){
         noOfDoors = 0;
@@ -29,6 +32,13 @@ public:
         numPlate = "";
         color = "";
         transmissionType = "";
-        fault = nullptr;
+        fault = "";
+        vehicleType = "";
     }
+
+    void generalInput();
+    void generalOutput() const;
+
+    virtual void vehicleReturn() = 0;//ye polymorphism k liye hai sab apni spni class m is ka
+                                     //function bananah. Refrence k liye SportsCar dekh lena
 };

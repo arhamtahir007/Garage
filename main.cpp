@@ -1,6 +1,12 @@
-#include "Person.h"
+#include "LogIn.h"
+
 int main(){
-    Person obj;
-    //cin>>obj;
-    //obj.ReadingFileData();
+    int a = userLogIn();
+    if (a == 1 )
+    {
+        cout<< "all is good";
+    }
+    else{
+        return 0;
+    }
 }
