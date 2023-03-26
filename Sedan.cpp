@@ -3,12 +3,14 @@
 //
 
 #include "Sedan.h"
-void Sedan:: vehicleReturn() {   //virtual function call as in other car classes
-    cout<<"Classification of Car: "<<vehicleType<<endl;
-    cout<<"Registration Number: "<<numPlate<<endl;
-    cout<<"Color: "<<color<<endl;
+
+void Sedan::vehicleReturn() {   //virtual function call as in other car classes
+    cout << "Classification of Car: " << vehicleType << endl;
+    cout << "Registration Number: " << numPlate << endl;
+    cout << "Color: " << color << endl;
 }
-void Sedan:: dataReading() {
+
+void Sedan::dataReading() {
     Sedan car;
     string input;
     ifstream output("SedanRecords.txt");
@@ -18,7 +20,7 @@ void Sedan:: dataReading() {
         noOfEntries++;
     }
     output.close();
-    string temp, type;
+    string temp;
     cout << "Enter registration number:\n";
     cin >> temp;
     output.open("SedanRecords.txt", ios::in);
@@ -31,11 +33,9 @@ void Sedan:: dataReading() {
         output >> car.color;
         output >> car.transmissionType;
         output >> car.vehicleType;
-        output >> type;
         output >> car.airBags;
         output >> car.powerLocks;
         output >> car.powerWindows;
-        car.vehicleType = car.vehicleType + " " + type;
         getline(output, car.fault);
         if (car.numPlate == temp) {
             cout << car;
@@ -44,75 +44,75 @@ void Sedan:: dataReading() {
     }
     cout << "Record Not Found.\n";
 }
+
 void Sedan::dataRecord() {
-    ofstream input("SedanRecords.txt",ios::out | ios::app);
-    input<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "
-         <<fault<<" "<<color<<" "<<transmissionType<<" "<<vehicleType<<" "<<airBags<<" "<<powerLocks<<" "<<powerWindows;
+    ofstream input("SedanRecords.txt", ios::out | ios::app);
+    input << numPlate << " " << noOfDoors << " " << noOfTyres << " " << noOfSeats << " " << engineCC << " " << color
+          << " "
+          << transmissionType << " " << vehicleType << " " << airBags << " " << powerLocks << " " << powerWindows << " "
+          << fault << endl;
 
     input.close();
 }
 
 
-istream &operator >> (istream& input ,Sedan& car){
+istream &operator>>(istream &input, Sedan &car) {
     car.generalInput();
-    cout<<" enter number of airbags"<<endl;
-    input>>car.airBags;
+    cout << " enter number of airbags" << endl;
+    input >> car.airBags;
 
-    cout<<" Enter type of Powerlocks"<<endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
+    cout << " Enter type of Powerlocks"
+         << endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
 
-    input>>car.powerLocks;
-    if(car.powerLocks!=" single"&& car.powerLocks!="Single"&&car.powerLocks!=" dual"&& car.powerLocks!="Dual")
-    {
-        cout<<"Enter \"single \" or \"dual\" only.\n";
-        input>>car.powerLocks;
+    input >> car.powerLocks;
+    if (car.powerLocks != " single" && car.powerLocks != "Single" && car.powerLocks != " dual" &&
+        car.powerLocks != "Dual") {
+        cout << "Enter \"single \" or \"dual\" only.\n";
+        input >> car.powerLocks;
     }
-    input>>car.powerWindows;// window locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
-    if(car.powerWindows!=" single"&& car.powerWindows!="Single"&&car.powerWindows!=" dual"&& car.powerWindows!="Dual")
-    {
-        cout<<"Enter \"single \" or \"dual\" only.\n";
-        input>>car.powerWindows;
+    input
+            >> car.powerWindows;// window locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
+    if (car.powerWindows != " single" && car.powerWindows != "Single" && car.powerWindows != " dual" &&
+        car.powerWindows != "Dual") {
+        cout << "Enter \"single \" or \"dual\" only.\n";
+        input >> car.powerWindows;
     }
-    while(true) {
-        if (car.noOfDoors!=4) {
+    while (true) {
+        if (car.noOfDoors != 4) {
             cout << "Invalid Number of Doors, Enter again.\n";
             cout << "Enter no of Doors:\n";
             input >> car.noOfDoors;
 
         } else
-
-        break;
+            break;
     }
-    while(true) {
-        if (car.noOfSeats != 5 ) {
+    while (true) {
+        if (car.noOfSeats != 5) {
             cout << "Invalid Number of Seats, Enter again.\n";
             cout << "Enter no of Seats:\n";
             input >> car.noOfSeats;
 
-        }
-        else
+        } else
             break;
     }
-    while(true) {
+    while (true) {
         if (car.noOfTyres != 4) {
             cout << "Invalid Number of Tyres, Enter again.\n";
             cout << "Enter no of Tyres:\n";
             input >> car.noOfTyres;
 
         } else
-
-        break;
+            break;
     }
     return input;
 
 
-
-
 }
 
-ostream &operator << (ostream& out,const Sedan& obj) {
+ostream &operator<<(ostream &out, const Sedan &obj) {
     obj.generalOutput();
-    out<<"PowerLocks Type: "<<obj.powerLocks<<endl;
-    out<<"PowerWindows Type: "<<obj.powerWindows<<endl;
-    out<<"AirBags Numbers: "<<obj.airBags<<endl;
+    out << "PowerLocks Type: " << obj.powerLocks << endl;
+    out << "PowerWindows Type: " << obj.powerWindows << endl;
+    out << "AirBags Numbers: " << obj.airBags << endl;
     return out;
 }
