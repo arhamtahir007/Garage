@@ -9,7 +9,7 @@
 #include "Customer.h"
 #include "SportsCar.h"
 
-class CusVeh{
+class CusVeh{ //This class will be used for association and aggregation
     Customer customer;
     SportsCar sc;
 public:
