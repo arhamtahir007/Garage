@@ -58,7 +58,7 @@ int userLogIn() {
             goto reLog;
         }
         else{
-            while (tryCounter != 3) {
+            while (tryCounter != 5) {
                 char asking[] = "LOCKING SYSTEM........";
                 for (int i = 0; asking[i] != '\0'; i++) {
                     cout << asking[i];
