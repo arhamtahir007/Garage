@@ -6,7 +6,7 @@
 #define MAIN_CPP_EMPLOYEE_H
 
 #endif //MAIN_CPP_EMPLOYEE_H
-#include "Customer.h"
+#include "Person.h"
 
 class Employee:public Person{
     double salary;

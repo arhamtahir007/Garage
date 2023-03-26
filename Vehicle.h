@@ -36,6 +36,9 @@ public:
         vehicleType = "";
     }
 
+    string getVehicleType();
+    string setNumPlate(string);
+
     void generalInput();
     void generalOutput() const;
 

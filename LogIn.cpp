@@ -50,7 +50,7 @@ int userLogIn() {
     logIn->setUserName();
     cout<<"Enter Password:\n";
     logIn->setPassword();
-    if (logIn->getUserName() != logIn->getMatchUser() && logIn->getPassword() != logIn->getMatchPass()){
+    if (logIn->getUserName() != logIn->getMatchUser() || logIn->getPassword() != logIn->getMatchPass()){
         if (tryCounter != 0){
             --tryCounter;
             cout<<"Invalid User Name or Password!\n";
@@ -58,15 +58,19 @@ int userLogIn() {
             goto reLog;
         }
         else{
-            char asking[] = "LOCKING SYSTEM........";
-            for (int i = 0; asking[i] != '\0' ; i++)
-            {
-                cout << asking[i];
-                cout.flush();
-                if (asking[i] == '\n')
-                    Sleep(500);
-                else
-                    Sleep(5);
+            while (tryCounter != 3) {
+                char asking[] = "LOCKING SYSTEM........";
+                for (int i = 0; asking[i] != '\0'; i++) {
+                    cout << asking[i];
+                    cout.flush();
+                    if (asking[i] == '\n')
+                        Sleep(500);
+                    else
+                        Sleep(5);
+                }
+                Sleep(1000);
+                system("clear");
+                tryCounter++;
             }
             LogIn::releaseInstance();
             return 0;

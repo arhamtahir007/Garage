@@ -7,11 +7,35 @@
 
 #endif //MAIN_CPP_CUSTOMERLINKVEHICLE_H
 #include "Customer.h"
-#include "SportsCar.h"
+#include "Hatchback.h"
 
+template<typename T>
 class CusVeh{ //This class will be used for association and aggregation
-    Customer customer;
-    SportsCar sc;
+    Customer* customer;
+    T* vehicle;
 public:
-    void input();
+    CusVeh(){
+        customer = nullptr;
+        vehicle = nullptr;
+    }
+    explicit CusVeh(Customer* temp,T* temp2){
+        customer = temp;
+        vehicle = temp2;
+    }
+
+    void setCustomer(Customer* temp){
+        customer = temp;
+    }
+
+    void setVehicle(T* temp){
+        vehicle = temp;
+    }
+
+    void filing(){
+        customer->setVehicleType(vehicle->getVehicleType());
+        customer->writeToFile();
+        vehicle->setNumPlate(customer->getNumberPlate());
+        vehicle->dataRecord();
+    }
 };
+

@@ -5,7 +5,7 @@
 #ifndef GARAGE_SEDAN_H
 #define GARAGE_SEDAN_H
 
-#include "Vehicle.h"
+#include "SportsCar.h"
 
 class Sedan: public Vehicle{
 protected:
@@ -15,9 +15,9 @@ protected:
 public:
     Sedan(){ // default constructor
         airBags=0;
-        powerLocks=" ";
-        powerWindows=" ";
-
+        powerLocks="";
+        powerWindows="";
+        vehicleType = "Sedan";
     }
 
     void vehicleReturn(); // polymirization virtual function

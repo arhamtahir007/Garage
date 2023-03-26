@@ -21,13 +21,11 @@ public:
 
     void vehicleReturn();
 
-    void saveData();
+    void dataRecord();
 
-    friend void readDataSpecific();
+    void dataReading();
 
     friend ostream &operator << (ostream&,const SportsCar&);
     friend istream &operator >> (istream&,SportsCar&);
 
 };
-
-void readDataSpecific();

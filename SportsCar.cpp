@@ -51,17 +51,17 @@ void SportsCar::vehicleReturn() {
 }
 
 
-void SportsCar::saveData() {
-    fstream in("SportsCar Record.txt",ios::out | ios::app);
+void SportsCar::dataRecord() {
+    fstream in("Sports Car Record.txt",ios::out | ios::app);
     in<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "<<color<<" "
     <<transmissionType<<" "<<vehicleType<<" "<<turboType<<" "<<spoilerType<<" "<<fault;
     in.close();
 }
 
-void readDataSpecific() {
+void SportsCar::dataReading() {
     SportsCar sc;
     string counter;
-    fstream out("SportsCar Record.txt", ios::in);
+    fstream out("Sports Car Record.txt", ios::in);
     int noOfEntries = 0;
     while (!out.eof()) {
         getline(out, counter);

@@ -74,7 +74,7 @@ void Hatchback::dataRecord() {
 void Hatchback:: dataReading() {
     Hatchback car;
     string input;
-    ifstream output("Hatchback Record.txt");
+    ifstream output("HatchBack Record.txt");
     int noOfEntries = 0;
     while (!output.eof()) {
         getline(output, input);
@@ -84,7 +84,7 @@ void Hatchback:: dataReading() {
     string temp, type;
     cout << "Enter registration number:\n";
     cin >> temp;
-    output.open("Hatchback Record.txt", ios::in);
+    output.open("HatchBack Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         output >> car.numPlate;
         output >> car.noOfDoors;

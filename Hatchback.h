@@ -4,8 +4,8 @@
 
 #ifndef GARAGE_HATCHBACK_H
 #define GARAGE_HATCHBACK_H
-#include "Vehicle.h"
-#include "fstream"
+#include "Sedan.h"
+
 class Hatchback: public Vehicle {
 protected:
     int airBags;
