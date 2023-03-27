@@ -21,8 +21,10 @@ public:
     }
 
     void vehicleReturn(); // polymirization virtual function
-    void dataReading(); //filing data reading function
+    Sedan dataReading(string temp); //filing data reading function
     void dataRecord();// storing data
+
+    friend void removeSedan(string);
 
     friend istream &operator >> (istream& ,Sedan&);
     friend ostream &operator << (ostream& ,const Sedan& );

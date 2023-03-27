@@ -9,6 +9,7 @@
 #pragma once
 #include<iostream>
 #include <fstream>
+#include "Customer.h"
 using namespace std;
 
 class Vehicle{

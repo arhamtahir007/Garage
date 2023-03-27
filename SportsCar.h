@@ -23,7 +23,9 @@ public:
 
     void dataRecord();
 
-    void dataReading();
+    SportsCar dataReading(string temp);
+
+    friend void removeSportsCar(string regNum);
 
     friend ostream &operator << (ostream&,const SportsCar&);
     friend istream &operator >> (istream&,SportsCar&);

@@ -23,7 +23,8 @@ public:
 
     void vehicleReturn();  // virtual function by polymerization
     void dataRecord(); // data record
-    void dataReading(); // data output
+    Hatchback dataReading(string temp); // data output
+    friend void removeHatchBack(string regNum);
 
     friend ostream &operator << (ostream& ,const Hatchback&); // operator overloading of hatchback
     friend istream &operator >> (istream& ,Hatchback&);

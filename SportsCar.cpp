@@ -58,7 +58,7 @@ void SportsCar::dataRecord() {
     in.close();
 }
 
-void SportsCar::dataReading() {
+SportsCar SportsCar::dataReading(string temp) {
     SportsCar sc;
     string counter;
     fstream out("Sports Car Record.txt", ios::in);
@@ -68,9 +68,7 @@ void SportsCar::dataReading() {
         noOfEntries++;
     }
     out.close();
-    string temp, type;
-    cout << "Enter registration number:\n";
-    cin >> temp;
+    string type;
     out.open("SportsCar Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         out >> sc.numPlate;
@@ -87,8 +85,7 @@ void SportsCar::dataReading() {
         sc.vehicleType = sc.vehicleType + " " + type;
         getline(out, sc.fault);
         if (sc.numPlate == temp) {
-            cout << sc;
-            return;
+            return sc;
         }
     }
     cout << "Record Not Found.\n";

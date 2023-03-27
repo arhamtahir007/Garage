@@ -68,7 +68,7 @@ void Customer::writeToFile() {
     << " " << address.getArea() << endl;
 }
 
-void readFromFileCustomer() {
+/*void readFromFileCustomer() {
     Customer temp;
     string counter;
     fstream read("Customer Record.txt", ios::in);
@@ -108,4 +108,4 @@ void readFromFileCustomer() {
         }
     }
     cout << "Record Not Found!\n";
-}
+}*/

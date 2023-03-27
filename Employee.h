@@ -18,6 +18,9 @@ public:
     void writeToFile();
     friend void readFromFileEmployee();
 
+    friend Employee searchEmployee();
+    friend void removeEmployee();
+
     friend istream &operator >> (istream& input,Employee& person);
     friend ostream &operator << (ostream& output,const Employee& person);
 };

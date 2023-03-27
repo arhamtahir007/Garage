@@ -10,3 +10,27 @@
 #include "CustomerLinkVehicle.h"
 
 void addVehicle(Customer temp);
+
+void returningVehicle();
+
+Customer searchCustomer();
+
+Employee searchEmployee();
+
+void payment();
+
+void employeeManagement();
+
+void removeEmployee();
+
+void removeCustomer();
+
+void customerManagement();
+
+void removeSedan(string regNum);
+
+void removeHatchBack(string regNum);
+
+void removeSportsCar(string regNum);
+
+void viewAllCusVeh();

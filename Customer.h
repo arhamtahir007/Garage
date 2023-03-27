@@ -24,11 +24,15 @@ public:
     string getVehicleType();
 
     void writeToFile();
-    friend void readFromFileCustomer();
+//    friend void readFromFileCustomer();
+
+    friend Customer searchCustomer();
+    friend void removeCustomer();
+    friend void viewAllCusVeh();
 
     friend istream &operator >> (istream& input,Customer& person);
     friend ostream &operator << (ostream& output,const Customer& person);
 
 };
 
-void readFromFileCustomer();
+//void readFromFileCustomer();

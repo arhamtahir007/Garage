@@ -6,7 +6,6 @@
 #define MAIN_CPP_CUSTOMERLINKVEHICLE_H
 
 #endif //MAIN_CPP_CUSTOMERLINKVEHICLE_H
-#include "Customer.h"
 #include "Hatchback.h"
 
 template<typename T>

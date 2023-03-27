@@ -1,5 +1,4 @@
 #include "Functions.h"
-
 int main(){
     int a = userLogIn();
     if (a == 1 ){
@@ -20,6 +19,17 @@ int main(){
             }
 
             case '2':{
+                returningVehicle();
+                break;
+            }
+
+            case '3':{
+                customerManagement();
+                break;
+            }
+
+            case '4':{
+                employeeManagement();
                 break;
             }
 

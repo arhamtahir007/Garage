@@ -10,7 +10,7 @@ void Sedan::vehicleReturn() {   //virtual function call as in other car classes
     cout << "Color: " << color << endl;
 }
 
-void Sedan::dataReading() {
+Sedan Sedan::dataReading(string temp) {
     Sedan car;
     string input;
     ifstream output("Sedan Records.txt");
@@ -20,9 +20,6 @@ void Sedan::dataReading() {
         noOfEntries++;
     }
     output.close();
-    string temp;
-    cout << "Enter registration number:\n";
-    cin >> temp;
     output.open("Sedan Records.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         output >> car.numPlate;
@@ -38,8 +35,7 @@ void Sedan::dataReading() {
         output >> car.powerWindows;
         getline(output, car.fault);
         if (car.numPlate == temp) {
-            cout << car;
-            return;
+            return car;
         }
     }
     cout << "Record Not Found.\n";
@@ -58,10 +54,10 @@ void Sedan::dataRecord() {
 
 istream &operator>>(istream &input, Sedan &car) {
     car.generalInput();
-    cout << "Enter number of airbags:" << endl;
+    cout << "Enter number of Airbags:" << endl;
     input >> car.airBags;
 
-    cout << " Enter type of Power locks:"
+    cout << "Enter type of Power locks:"
          << endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
     input >> car.powerLocks;
     while (true) {
