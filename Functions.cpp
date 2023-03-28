@@ -3,7 +3,7 @@
 //
 
 #include "Functions.h"
-
+//working properly 👍
 void addVehicle(Customer temp) {
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
@@ -43,7 +43,7 @@ void addVehicle(Customer temp) {
         }
     }
 }
-
+//Faults in this function in vehicleReturn()
 void returningVehicle() {
     Customer returning = searchCustomer();
     cout<<"Here 1\n";
