@@ -16,7 +16,7 @@ public:
     SportsCar(){
         turboType = "";
         spoilerType = "";
-        vehicleType = "Sports Car";
+        vehicleType = "SportsCar";
     }
 
     void vehicleReturn();

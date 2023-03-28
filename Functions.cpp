@@ -46,6 +46,8 @@ void addVehicle(Customer temp) {
 
 void returningVehicle() {
     Customer returning = searchCustomer();
+    cout<<"Here 1\n";
+    cout<<returning.getVehicleType()<<endl;
     if (returning.getVehicleType() == "Sedan") {
         Sedan sedan;
         Vehicle *veh = &sedan;
@@ -55,12 +57,12 @@ void returningVehicle() {
         payment();
     } else if (returning.getVehicleType() == "HatchBack") {
         Hatchback hatchback;
-        Vehicle *veh = &hatchback;
         hatchback.dataReading(returning.getNumberPlate());
+        Vehicle *veh = &hatchback;
         cout << returning;
         veh->vehicleReturn();
         payment();
-    } else if (returning.getVehicleType() == "Sports Car") {
+    } else if (returning.getVehicleType() == "SportsCar") {
         SportsCar sportsCar;
         Vehicle *veh = &sportsCar;
         sportsCar.dataReading(returning.getNumberPlate());
@@ -122,7 +124,7 @@ void payment() {
     cin >> charged;
     rePay:
     cout << "Amount Payed:\n";
-    cout << payed;
+    cin >> payed;
     if (payed < charged) {
         cout << "Least payable amount is " << charged << " Rs.\n";
         goto rePay;
@@ -312,15 +314,18 @@ void customerManagement(){
             if (customer.getVehicleType() == "Sedan") {
                 Sedan sedan;
                 sedan.dataReading(customer.getNumberPlate());
-                cout << customer << endl << sedan << endl;
+                cout << customer << endl;
+                cout << sedan << endl;
             } else if (customer.getVehicleType() == "HatchBack") {
                 Hatchback hatchback;
                 hatchback.dataReading(customer.getNumberPlate());
-                cout << customer << endl << hatchback << endl;
-            } else if (customer.getVehicleType() == "Sports Car") {
+                cout << customer << endl;
+                cout<< hatchback << endl;
+            } else if (customer.getVehicleType() == "SportsCar") {
                 SportsCar sportsCar;
                 sportsCar.dataReading(customer.getNumberPlate());
-                cout << customer << endl << sportsCar << endl;
+                cout << customer << endl;
+                cout << sportsCar << endl;
             }
             break;
         }
@@ -407,7 +412,7 @@ void removeCustomer(){
         else if (removeCus[indexToRemove].getVehicleType() == "HatchBack") {
             removeHatchBack(removeCus[indexToRemove].getNumberPlate());
         }
-        else if (removeCus[indexToRemove].getVehicleType() == "Sports Car") {
+        else if (removeCus[indexToRemove].getVehicleType() == "SportsCar") {
             removeSportsCar(removeCus[indexToRemove].getNumberPlate());
         }
     } else {
@@ -514,7 +519,6 @@ void removeSportsCar(string regNum) {
     }
     out.close();
     auto *sc = new SportsCar[noOfEntries];
-    string type;
     out.open("SportsCar Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         out >> sc[i].numPlate;
@@ -525,10 +529,8 @@ void removeSportsCar(string regNum) {
         out >> sc[i].color;
         out >> sc[i].transmissionType;
         out >> sc[i].vehicleType;
-        out >> type;
         out >> sc[i].turboType;
         out >> sc[i].spoilerType;
-        sc[i].vehicleType = sc[i].vehicleType + " " + type;
         getline(out, sc[i].fault);
         if (sc[i].numPlate == regNum) {
             indexToRemove = i;
@@ -579,7 +581,7 @@ void viewAllCusVeh() {
             Hatchback hatchback;
             hatchback.dataReading(customer.getNumberPlate());
             cout << customer << endl << hatchback << endl;
-        } else if (customer.getVehicleType() == "Sports Car") {
+        } else if (customer.getVehicleType() == "SportsCar") {
             SportsCar sportsCar;
             sportsCar.dataReading(customer.getNumberPlate());
             cout << customer << endl << sportsCar << endl;

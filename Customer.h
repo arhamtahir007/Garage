@@ -32,7 +32,6 @@ public:
 
     friend istream &operator >> (istream& input,Customer& person);
     friend ostream &operator << (ostream& output,const Customer& person);
-
 };
 
 //void readFromFileCustomer();
