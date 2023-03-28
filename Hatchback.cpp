@@ -71,20 +71,17 @@ void Hatchback::dataRecord() {
     input.close();
 }
 
-void Hatchback:: dataReading() {
+Hatchback Hatchback:: dataReading(string temp) {
     Hatchback car;
     string input;
-    ifstream output("Hatchback Record.txt");
+    ifstream output("HatchBack Record.txt");
     int noOfEntries = 0;
     while (!output.eof()) {
         getline(output, input);
         noOfEntries++;
     }
     output.close();
-    string temp, type;
-    cout << "Enter registration number:\n";
-    cin >> temp;
-    output.open("Hatchback Record.txt", ios::in);
+    output.open("HatchBack Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         output >> car.numPlate;
         output >> car.noOfDoors;
@@ -98,8 +95,7 @@ void Hatchback:: dataReading() {
         output >> car.powerLocks;
         getline(output, car.fault);
         if (car.numPlate == temp) {
-            cout << car;
-            return;
+            return car;
         }
     }
     cout << "Record Not Found.\n";

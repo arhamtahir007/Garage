@@ -44,6 +44,7 @@ void Employee::writeToFile() {
          <<" "<<address.getStreetNumber()<<" "<<address.getHouseNumber()<<" "<<address.getArea()<<endl;
 }
 
+
 void readFromFileEmployee() {
     Employee temp;
     string counter;
@@ -53,11 +54,6 @@ void readFromFileEmployee() {
         noOfEntries++;
     }
     read.close();
-    string nameOne,nameTwo;
-    cout<<"Enter First Name:\n";
-    cin>>nameOne;
-    cout<<"Enter Second Name:\n";
-    cin>>nameTwo;
     read.open("Employee Record.txt",ios::in);
     string s;int j;
     for (int i = 0; i < noOfEntries; ++i) {
@@ -70,12 +66,6 @@ void readFromFileEmployee() {
         read >> j; temp.address.setHouseNumber(j);
         getline(read,s);
         temp.address.setArea(s);
-        if (temp.first_name == nameOne){
-            if (temp.second_name == nameTwo){
-                cout<<temp;
-                return;
-            }
-        }
+        cout<<temp<<endl;
     }
-    cout<<"Record Not Found!\n";
 }

@@ -20,8 +20,6 @@ void Vehicle::generalInput(){
         cout<<"Enter \"Auto\" or \"Manual\" only.\n";
         goto gI;
     }
-    cout<<"Enter Registration Number:\n";
-    cin>>numPlate;
     cout<<"Enter Color:\n";
     cin>>color;
     cin.ignore();
@@ -38,6 +36,15 @@ void Vehicle::generalOutput() const {
     cout<<"Number of Tyres: "<<noOfTyres<<endl;
     cout<<"Registration Number: "<<numPlate<<endl;
     cout<<"Faults: "<<fault<<endl;
+}
+
+string Vehicle::getVehicleType() {
+    return vehicleType;
+}
+
+string Vehicle::setNumPlate(string x) {
+    numPlate = x;
+    return numPlate;
 }
 
 

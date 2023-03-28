@@ -51,26 +51,23 @@ void SportsCar::vehicleReturn() {
 }
 
 
-void SportsCar::saveData() {
-    fstream in("SportsCar Record.txt",ios::out | ios::app);
+void SportsCar::dataRecord() {
+    fstream in("Sports Car Record.txt",ios::out | ios::app);
     in<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "<<color<<" "
     <<transmissionType<<" "<<vehicleType<<" "<<turboType<<" "<<spoilerType<<" "<<fault;
     in.close();
 }
 
-void readDataSpecific() {
+SportsCar SportsCar::dataReading(string temp) {
     SportsCar sc;
     string counter;
-    fstream out("SportsCar Record.txt", ios::in);
+    fstream out("Sports Car Record.txt", ios::in);
     int noOfEntries = 0;
     while (!out.eof()) {
         getline(out, counter);
         noOfEntries++;
     }
     out.close();
-    string temp, type;
-    cout << "Enter registration number:\n";
-    cin >> temp;
     out.open("SportsCar Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         out >> sc.numPlate;
@@ -81,14 +78,11 @@ void readDataSpecific() {
         out >> sc.color;
         out >> sc.transmissionType;
         out >> sc.vehicleType;
-        out >> type;
         out >> sc.turboType;
         out >> sc.spoilerType;
-        sc.vehicleType = sc.vehicleType + " " + type;
         getline(out, sc.fault);
         if (sc.numPlate == temp) {
-            cout << sc;
-            return;
+            return sc;
         }
     }
     cout << "Record Not Found.\n";

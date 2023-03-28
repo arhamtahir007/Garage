@@ -4,8 +4,8 @@
 
 #ifndef GARAGE_HATCHBACK_H
 #define GARAGE_HATCHBACK_H
-#include "Vehicle.h"
-#include "fstream"
+#include "Sedan.h"
+
 class Hatchback: public Vehicle {
 protected:
     int airBags;
@@ -23,7 +23,8 @@ public:
 
     void vehicleReturn();  // virtual function by polymerization
     void dataRecord(); // data record
-    void dataReading(); // data output
+    Hatchback dataReading(string temp); // data output
+    friend void removeHatchBack(string regNum);
 
     friend ostream &operator << (ostream& ,const Hatchback&); // operator overloading of hatchback
     friend istream &operator >> (istream& ,Hatchback&);

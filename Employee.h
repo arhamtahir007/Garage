@@ -6,7 +6,7 @@
 #define MAIN_CPP_EMPLOYEE_H
 
 #endif //MAIN_CPP_EMPLOYEE_H
-#include "Customer.h"
+#include "Person.h"
 
 class Employee:public Person{
     double salary;
@@ -17,6 +17,9 @@ public:
 
     void writeToFile();
     friend void readFromFileEmployee();
+
+    friend Employee searchEmployee();
+    friend void removeEmployee();
 
     friend istream &operator >> (istream& input,Employee& person);
     friend ostream &operator << (ostream& output,const Employee& person);
