@@ -1,19 +1,19 @@
-//
-// Created by HP on 3/26/2023.
-//
-
 #include "Functions.h"
 //working properly 👍
-void addVehicle(Customer temp) {
+void addVehicle(Customer temp)
+{
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
     cout << "Type of Vehicle of Customer:\n"
             "1. Sedan\n"
             "2. HatchBack\n"
-            "3. Sports Car\n";
+            "3. Sports Car\n"
+            "4. Bus\n";
     cin >> menu; //command for input
-    switch (menu) { //switch cases being used to create menu
-        case '1': {
+    switch (menu)
+    { //switch cases being used to create menu
+        case '1':
+        {
             Sedan car;
             cin >> car;
             CusVeh<Sedan> save(&temp, &car);
@@ -21,7 +21,8 @@ void addVehicle(Customer temp) {
             break;
         }
 
-        case '2': {
+        case '2':
+        {
             Hatchback car;
             cin >> car;
             CusVeh<Hatchback> save(&temp, &car);
@@ -29,7 +30,8 @@ void addVehicle(Customer temp) {
             break;
         }
 
-        case '3': {
+        case '3':
+        {
             SportsCar car;
             cin >> car;
             CusVeh<SportsCar> save(&temp, &car);
@@ -37,7 +39,17 @@ void addVehicle(Customer temp) {
             break;
         }
 
-        default: {
+        case '4':
+        {
+            Bus bus;
+            cin>>bus;
+            CusVeh<Bus> save(&temp, &bus);
+            save.filing();
+            break;
+        }
+
+        default:
+        {
             cout << "Invalid Input. Enter a number.\n";
             goto re;
         }
@@ -48,37 +60,54 @@ void returningVehicle() {
     Customer returning = searchCustomer();
     cout<<"Here 1\n";
     cout<<returning.getVehicleType()<<endl;
-    if (returning.getVehicleType() == "Sedan") {
+    if (returning.getVehicleType() == "Sedan")
+    {
         Sedan sedan;
         Vehicle *veh = &sedan;
         sedan.dataReading(returning.getNumberPlate());
         cout << returning;
         veh->vehicleReturn();
         payment();
-    } else if (returning.getVehicleType() == "HatchBack") {
+    }
+    else if (returning.getVehicleType() == "HatchBack")
+    {
         Hatchback hatchback;
         hatchback.dataReading(returning.getNumberPlate());
         Vehicle *veh = &hatchback;
         cout << returning;
         veh->vehicleReturn();
         payment();
-    } else if (returning.getVehicleType() == "SportsCar") {
+    }
+    else if (returning.getVehicleType() == "SportsCar")
+    {
         SportsCar sportsCar;
         Vehicle *veh = &sportsCar;
         sportsCar.dataReading(returning.getNumberPlate());
         cout << returning;
         veh->vehicleReturn();
         payment();
-    } else
+    }
+    else if (returning.getVehicleType() == "Bus")
+    {
+        Bus bus;
+        Vehicle *veh = &bus;
+        //bus.dataReading(returning.getNumberPlate());
+        cout << returning;
+        veh->vehicleReturn();
+        payment();
+    }
+    else
         cout << "No Record Found.\n";
 }
 
-Customer searchCustomer() {
+Customer searchCustomer()
+{
     Customer temp;
     string counter;
     fstream read("Customer Record.txt", ios::in);
     int noOfEntries = 0;
-    while (!read.eof()) {
+    while (!read.eof())
+    {
         getline(read, counter);
         noOfEntries++;
     }
@@ -93,7 +122,8 @@ Customer searchCustomer() {
     read.open("Customer Record.txt", ios::in);
     string s;
     int j;
-    for (int i = 0; i < noOfEntries; ++i) {
+    for (int i = 0; i < noOfEntries; ++i)
+    {
         read >> temp.first_name;
         read >> temp.second_name;
         read >> temp.contact_no;
@@ -107,9 +137,12 @@ Customer searchCustomer() {
         temp.address.setHouseNumber(j);
         getline(read, s);
         temp.address.setArea(s);
-        if (temp.first_name == nameOne) {
-            if (temp.second_name == nameTwo) {
-                if (temp.number_plate == num) {
+        if (temp.first_name == nameOne)
+        {
+            if (temp.second_name == nameTwo)
+            {
+                if (temp.number_plate == num)
+                {
                     return temp;
                 }
             }
@@ -467,7 +500,6 @@ void removeSedan(string regNum) {
         }
     }
 }
-
 
 void removeHatchBack(string regNum) {
     string input;

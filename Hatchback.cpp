@@ -1,7 +1,3 @@
-//
-// Created by fajar.pk on 3/23/2023.
-//
-
 #include "Hatchback.h"
 void Hatchback:: vehicleReturn() {   //virtual function call as in other car classes
     cout<<"Classification of Car: "<<vehicleType<<endl;

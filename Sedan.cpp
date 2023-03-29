@@ -1,7 +1,3 @@
-//
-// Created by fajar.pk on 3/25/2023.
-//
-
 #include "Sedan.h"
 
 void Sedan::vehicleReturn() {   //virtual function call as in other car classes

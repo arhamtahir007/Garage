@@ -1,17 +1,18 @@
 #ifndef GARAGE_BUS_H
 #define GARAGE_BUS_H
 
+#pragma once
 #include "Vehicle.h"
 
-class Bus : Vehicle
+class Bus : public Vehicle
 {
     bool lcd;
 
 public:
     Bus();
 
-    void vehicleReturn();
-    void record();
+    void vehicleReturn() override;
+    void dataRecord();
 
     friend ostream &operator <<(ostream &, Bus &);
     friend istream &operator >>(istream &, Bus &);

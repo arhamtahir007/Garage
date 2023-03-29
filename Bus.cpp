@@ -6,7 +6,7 @@ Bus::Bus()
     lcd = 0;
 }
 
-void Bus::record()
+void Bus::dataRecord()
 {
     ofstream ofile("Bus Record.txt");       //opening bus record file
     ofile<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "<<color<<" "

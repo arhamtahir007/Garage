@@ -1,7 +1,3 @@
-//
-// Created by HP on 3/23/2023.
-//
-
 #include "Employee.h"
 
 istream &operator>>(istream &input, Employee &person) {

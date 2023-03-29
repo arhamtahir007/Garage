@@ -1,7 +1,3 @@
-//
-// Created by fajar.pk on 3/25/2023.
-//
-
 #ifndef GARAGE_SEDAN_H
 #define GARAGE_SEDAN_H
 
