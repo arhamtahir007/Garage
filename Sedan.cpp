@@ -10,20 +10,17 @@ void Sedan::vehicleReturn() {   //virtual function call as in other car classes
     cout << "Color: " << color << endl;
 }
 
-void Sedan::dataReading() {
+Sedan Sedan::dataReading(string temp) {
     Sedan car;
     string input;
-    ifstream output("SedanRecords.txt");
+    ifstream output("Sedan Records.txt");
     int noOfEntries = 0;
     while (!output.eof()) {
         getline(output, input);
         noOfEntries++;
     }
     output.close();
-    string temp;
-    cout << "Enter registration number:\n";
-    cin >> temp;
-    output.open("SedanRecords.txt", ios::in);
+    output.open("Sedan Records.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         output >> car.numPlate;
         output >> car.noOfDoors;
@@ -38,8 +35,7 @@ void Sedan::dataReading() {
         output >> car.powerWindows;
         getline(output, car.fault);
         if (car.numPlate == temp) {
-            cout << car;
-            return;
+            return car;
         }
     }
     cout << "Record Not Found.\n";
@@ -58,24 +54,32 @@ void Sedan::dataRecord() {
 
 istream &operator>>(istream &input, Sedan &car) {
     car.generalInput();
-    cout << " enter number of airbags" << endl;
+    cout << "Enter number of Airbags:" << endl;
     input >> car.airBags;
 
-    cout << " Enter type of Powerlocks"
+    cout << "Enter type of Power locks:"
          << endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
-
     input >> car.powerLocks;
-    if (car.powerLocks != " single" && car.powerLocks != "Single" && car.powerLocks != " dual" &&
-        car.powerLocks != "Dual") {
-        cout << "Enter \"single \" or \"dual\" only.\n";
-        input >> car.powerLocks;
+    while (true) {
+        if (car.powerLocks != "single" && car.powerLocks != "Single" && car.powerLocks != "dual" &&
+            car.powerLocks != "Dual") {
+            cout << "Enter \"single \" or \"dual\" only.\n";
+            input >> car.powerLocks;
+        }
+        else
+            break;
     }
-    input
-            >> car.powerWindows;// window locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
-    if (car.powerWindows != " single" && car.powerWindows != "Single" && car.powerWindows != " dual" &&
-        car.powerWindows != "Dual") {
-        cout << "Enter \"single \" or \"dual\" only.\n";
-        input >> car.powerWindows;
+
+
+        input>> car.powerWindows;// window locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
+    while (true) {
+        if (car.powerWindows != "single" && car.powerWindows != "Single" && car.powerWindows != "dual" &&
+            car.powerWindows != "Dual") {
+            cout << "Enter \"single \" or \"dual\" only.\n";
+            input >> car.powerWindows;
+        }
+        else
+            break;
     }
     while (true) {
         if (car.noOfDoors != 4) {
@@ -87,7 +91,7 @@ istream &operator>>(istream &input, Sedan &car) {
             break;
     }
     while (true) {
-        if (car.noOfSeats != 5) {
+        if (car.noOfSeats != 5 && car.noOfSeats != 4) {
             cout << "Invalid Number of Seats, Enter again.\n";
             cout << "Enter no of Seats:\n";
             input >> car.noOfSeats;

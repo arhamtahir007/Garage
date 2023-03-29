@@ -7,7 +7,7 @@
 
 #include "Address.h"
 #include "fstream"
-
+//#pragma once
 class Person {
 protected:
     string first_name;

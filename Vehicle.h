@@ -5,6 +5,7 @@
 #pragma once
 #include<iostream>
 #include <fstream>
+#include "Customer.h"
 using namespace std;
 
 class Vehicle{
@@ -31,6 +32,9 @@ public:
         fault = "";
         vehicleType = "";
     }
+
+    string getVehicleType();
+    string setNumPlate(string);
 
     void generalInput();
     void generalOutput() const;
