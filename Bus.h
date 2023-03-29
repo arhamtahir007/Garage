@@ -5,10 +5,16 @@
 
 class Bus : Vehicle
 {
+    bool lcd;
+
+public:
+    Bus();
+
+    void vehicleReturn();
+    void record();
+
+    friend ostream &operator <<(ostream &, Bus &);
+    friend istream &operator >>(istream &, Bus &);
 };
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 #endif //GARAGE_BUS_H
