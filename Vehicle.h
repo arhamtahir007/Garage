@@ -1,7 +1,3 @@
-//
-// Created by HP on 3/18/2023.
-//
-
 #ifndef GARAGE_VEHICLE_H
 #define GARAGE_VEHICLE_H
 
