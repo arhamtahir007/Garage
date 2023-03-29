@@ -15,12 +15,15 @@ istream & operator >>(istream& in ,Hatchback& obj){
     in>>obj.airBags;
 
     cout<<" Enter type of Power locks"<<endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
-
     in>>obj.powerLocks;
-    if(obj.powerLocks!=" single"&& obj.powerLocks!="Single"&&obj.powerLocks!=" dual"&& obj.powerLocks!="Dual")
-    {
-        cout<<"Enter \"single \" or \"dual\" only.\n";
-        in>>obj.powerLocks;
+    while (true) {
+        if (obj.powerLocks != "single" && obj.powerLocks != "Single" && obj.powerLocks != "dual" &&
+            obj.powerLocks != "Dual") {
+            cout << "Enter \"single \" or \"dual\" only.\n";
+            in >> obj.powerLocks;
+        }
+        else
+            break;
     }
 
     while(true) {
