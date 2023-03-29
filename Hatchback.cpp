@@ -11,7 +11,7 @@ void Hatchback:: vehicleReturn() {   //virtual function call as in other car cla
 
 istream & operator >>(istream& in ,Hatchback& obj){
     obj.generalInput();
-    cout<<" enter number of airbags"<<endl;
+    cout<<"Enter number of airbags"<<endl;
     in>>obj.airBags;
 
     cout<<" Enter type of Power locks"<<endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
@@ -66,11 +66,10 @@ ostream &operator << (ostream& out,const Hatchback& obj) {
 }
 
 
-void Hatchback::dataRecord() {
+void Hatchback::dataRecord(){
     ofstream input("Hatchback Record.txt",ios::out | ios::app);
     input<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "
          <<color<<" "<<transmissionType<<" "<<vehicleType<<" "<<airBags<<" "<<powerLocks<<" "<<fault<<endl;
-
     input.close();
 }
 
@@ -83,6 +82,7 @@ Hatchback Hatchback:: dataReading(string temp) {
         getline(output, input);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     output.close();
     output.open("HatchBack Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
@@ -102,4 +102,6 @@ Hatchback Hatchback:: dataReading(string temp) {
         }
     }
     cout << "Record Not Found.\n";
+    Hatchback null;
+    return null;
 }

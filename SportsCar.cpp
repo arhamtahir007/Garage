@@ -67,6 +67,7 @@ SportsCar SportsCar::dataReading(string temp) {
         getline(out, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     out.close();
     out.open("Sports Car Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
@@ -86,4 +87,6 @@ SportsCar SportsCar::dataReading(string temp) {
         }
     }
     cout << "Record Not Found.\n";
+    SportsCar null;
+    return null;
 }

@@ -43,11 +43,9 @@ void addVehicle(Customer temp) {
         }
     }
 }
-//Faults in this function in vehicleReturn()
+//Now working absolutely fine 👌
 void returningVehicle() {
     Customer returning = searchCustomer();
-    cout<<"Here 1\n";
-    cout<<returning.getVehicleType()<<endl;
     if (returning.getVehicleType() == "Sedan") {
         Sedan sedan;
         sedan = sedan.dataReading(returning.getNumberPlate());
@@ -82,6 +80,7 @@ Customer searchCustomer() {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     string nameOne, nameTwo, num;
     cout << "Enter First Name:\n";
@@ -116,6 +115,8 @@ Customer searchCustomer() {
         }
     }
     cout << "Record Not Found!\n";
+    Customer null;
+    return null;
 }
 
 void payment() {
@@ -203,6 +204,7 @@ Employee searchEmployee() {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     string nameOne, nameTwo;
     cout << "Enter First Name:\n";
@@ -232,6 +234,8 @@ Employee searchEmployee() {
         }
     }
     cout << "Record Not Found!\n";
+    Employee null;
+    return null;
 }
 
 void removeEmployee() {
@@ -242,6 +246,7 @@ void removeEmployee() {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     read.open("Employee Record.txt", ios::in);
     auto *removeEmp = new Employee[noOfEntries];
@@ -363,6 +368,7 @@ void removeCustomer(){
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     read.open("Customer Record.txt", ios::in);
     auto *removeCus = new Customer[noOfEntries];
@@ -439,6 +445,7 @@ void removeSedan(string regNum) {
         getline(output, input);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     output.close();
     auto *sedan = new Sedan[noOfEntries];
     output.open("Sedan Records.txt", ios::in);
@@ -480,6 +487,7 @@ void removeHatchBack(string regNum) {
         getline(output, input);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     output.close();
     auto *hatchback = new Hatchback[noOfEntries];
     output.open("HatchBack Record.txt", ios::in);
@@ -519,6 +527,7 @@ void removeSportsCar(string regNum) {
         getline(out, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     out.close();
     auto *sc = new SportsCar[noOfEntries];
     out.open("SportsCar Record.txt", ios::in);
@@ -557,6 +566,7 @@ void viewAllCusVeh() {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     Customer customer;
     string s;int j;
