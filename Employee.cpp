@@ -49,14 +49,15 @@ void readFromFileEmployee() {
     Employee temp;
     string counter;
     fstream read("Employee Record.txt",ios::in);
-    int noOfEntries = 0;while (!read.eof()) {
+    int noOfEntries = 0;
+    while (!read.eof()) {
         getline(read, counter);
         noOfEntries++;
     }
     read.close();
     read.open("Employee Record.txt",ios::in);
     string s;int j;
-    for (int i = 0; i < noOfEntries; ++i) {
+    for (int i = 1; i < noOfEntries; ++i) {
         read >> temp.first_name;
         read >> temp.second_name;
         read >> temp.contact_no;

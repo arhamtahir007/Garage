@@ -68,7 +68,7 @@ SportsCar SportsCar::dataReading(string temp) {
         noOfEntries++;
     }
     out.close();
-    out.open("SportsCar Record.txt", ios::in);
+    out.open("Sports Car Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         out >> sc.numPlate;
         out >> sc.noOfDoors;
@@ -81,7 +81,7 @@ SportsCar SportsCar::dataReading(string temp) {
         out >> sc.turboType;
         out >> sc.spoilerType;
         getline(out, sc.fault);
-        if (sc.numPlate == temp) {
+        if (temp == sc.numPlate) {
             return sc;
         }
     }

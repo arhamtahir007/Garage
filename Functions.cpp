@@ -3,7 +3,7 @@
 //
 
 #include "Functions.h"
-
+//working properly 👍
 void addVehicle(Customer temp) {
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
@@ -43,29 +43,29 @@ void addVehicle(Customer temp) {
         }
     }
 }
-
+//Faults in this function in vehicleReturn()
 void returningVehicle() {
     Customer returning = searchCustomer();
     cout<<"Here 1\n";
     cout<<returning.getVehicleType()<<endl;
     if (returning.getVehicleType() == "Sedan") {
         Sedan sedan;
+        sedan = sedan.dataReading(returning.getNumberPlate());
         Vehicle *veh = &sedan;
-        sedan.dataReading(returning.getNumberPlate());
         cout << returning;
         veh->vehicleReturn();
         payment();
     } else if (returning.getVehicleType() == "HatchBack") {
         Hatchback hatchback;
-        hatchback.dataReading(returning.getNumberPlate());
+        hatchback = hatchback.dataReading(returning.getNumberPlate());
         Vehicle *veh = &hatchback;
         cout << returning;
         veh->vehicleReturn();
         payment();
     } else if (returning.getVehicleType() == "SportsCar") {
         SportsCar sportsCar;
+        sportsCar = sportsCar.dataReading(returning.getNumberPlate());
         Vehicle *veh = &sportsCar;
-        sportsCar.dataReading(returning.getNumberPlate());
         cout << returning;
         veh->vehicleReturn();
         payment();
@@ -270,13 +270,15 @@ void removeEmployee() {
             }
         }
     }
+    for (int i = 0; i < noOfEntries; ++i) {
+        cout<<removeEmp[i];
+    }
     if (indexToRemove >= 0) {
         remove("Employee Record.txt");
-        for (int i = 0; i < indexToRemove; ++i) {
-            removeEmp[i].writeToFile();
-        }
-        for (int i = indexToRemove + 1; i < noOfEntries; ++i) {
-            removeEmp[i].writeToFile();
+        for (int i = 0; i < noOfEntries; ++i) {
+            if (i != indexToRemove) {
+                removeEmp[i].writeToFile();
+            }
         }
         char asking[] = "Employee has been Successfully Removed.\n";
         for (int i = 0; asking[i] != '\0'; i++) {
@@ -298,6 +300,7 @@ void removeEmployee() {
                 Sleep(5);
         }
     }
+    delete[] removeEmp;
 }
 
 void customerManagement(){
@@ -306,24 +309,24 @@ void customerManagement(){
     cout<<"Enter 1 to search for a Customer & Vehicle.\n"
           "Enter 2 to remove a Customer & Vehicle.\n"
           "Enter 3 to see all Customer records.\n"
-          "Enter 0 to exit.\n"; //command for output
+          "Enter 0 to go back.\n"; //command for output
     cin>>menu; //command for input
     switch (menu) { //switch cases being used to create menu
         case '1': {
             Customer customer = searchCustomer();
             if (customer.getVehicleType() == "Sedan") {
                 Sedan sedan;
-                sedan.dataReading(customer.getNumberPlate());
+                sedan = sedan.dataReading(customer.getNumberPlate());
                 cout << customer << endl;
                 cout << sedan << endl;
             } else if (customer.getVehicleType() == "HatchBack") {
                 Hatchback hatchback;
-                hatchback.dataReading(customer.getNumberPlate());
+                hatchback = hatchback.dataReading(customer.getNumberPlate());
                 cout << customer << endl;
                 cout<< hatchback << endl;
             } else if (customer.getVehicleType() == "SportsCar") {
                 SportsCar sportsCar;
-                sportsCar.dataReading(customer.getNumberPlate());
+                sportsCar = sportsCar.dataReading(customer.getNumberPlate());
                 cout << customer << endl;
                 cout << sportsCar << endl;
             }
@@ -391,11 +394,10 @@ void removeCustomer(){
     }
     if (indexToRemove >= 0) {
         remove("Customer Record.txt");
-        for (int i = 0; i < indexToRemove; ++i) {
-            removeCus[i].writeToFile();
-        }
-        for (int i = indexToRemove + 1; i < noOfEntries; ++i) {
-            removeCus[i].writeToFile();
+        for (int i = 0; i < noOfEntries; ++i) {
+            if (i != indexToRemove) {
+                removeCus[i].writeToFile();
+            }
         }
         char asking[] = "Customer has been Successfully Removed.\n";
         for (int i = 0; asking[i] != '\0'; i++) {
@@ -459,13 +461,13 @@ void removeSedan(string regNum) {
     }
     if (indexToRemove >= 0) {
         remove("Sedan Records.txt");
-        for (int i = 0; i < indexToRemove; ++i) {
-            sedan[i].dataRecord();
-        }
-        for (int i = indexToRemove + 1; i < noOfEntries; ++i) {
-            sedan[i].dataRecord();
+        for (int i = 0; i < noOfEntries; ++i) {
+            if (i != indexToRemove) {
+                sedan[i].dataRecord();
+            }
         }
     }
+    delete[] sedan;
 }
 
 
@@ -499,13 +501,13 @@ void removeHatchBack(string regNum) {
     }
     if (indexToRemove >= 0) {
         remove("HatchBack Record.txt");
-        for (int i = 0; i < indexToRemove; ++i) {
-            hatchback[i].dataRecord();
-        }
-        for (int i = indexToRemove + 1; i < noOfEntries; ++i) {
-            hatchback[i].dataRecord();
+        for (int i = 0; i < noOfEntries; ++i) {
+            if (i != indexToRemove) {
+                hatchback[i].dataRecord();
+            }
         }
     }
+    delete[] hatchback;
 }
 
 void removeSportsCar(string regNum) {
@@ -538,13 +540,13 @@ void removeSportsCar(string regNum) {
     }
     if (indexToRemove >= 0) {
         remove("SportsCar Record.txt");
-        for (int i = 0; i < indexToRemove; ++i) {
-            sc[i].dataRecord();
-        }
-        for (int i = indexToRemove + 1; i < noOfEntries; ++i) {
-            sc[i].dataRecord();
+        for (int i = 0; i < noOfEntries; ++i) {
+            if (i != indexToRemove) {
+                sc[i].dataRecord();
+            }
         }
     }
+    delete[] sc;
 }
 
 void viewAllCusVeh() {
@@ -559,7 +561,7 @@ void viewAllCusVeh() {
     Customer customer;
     string s;int j;
     read.open("Customer Record.txt", ios::in);
-    for (int i = 0; i < noOfEntries; ++i) {
+    for (int i = 1; i < noOfEntries; ++i) {
         read >> customer.first_name;
         read >> customer.second_name;
         read >> customer.contact_no;
@@ -575,15 +577,15 @@ void viewAllCusVeh() {
         customer.address.setArea(s);
         if (customer.getVehicleType() == "Sedan") {
             Sedan sedan;
-            sedan.dataReading(customer.getNumberPlate());
+            sedan = sedan.dataReading(customer.getNumberPlate());
             cout << customer << endl << sedan << endl;
         } else if (customer.getVehicleType() == "HatchBack") {
             Hatchback hatchback;
-            hatchback.dataReading(customer.getNumberPlate());
+            hatchback = hatchback.dataReading(customer.getNumberPlate());
             cout << customer << endl << hatchback << endl;
         } else if (customer.getVehicleType() == "SportsCar") {
             SportsCar sportsCar;
-            sportsCar.dataReading(customer.getNumberPlate());
+            sportsCar = sportsCar.dataReading(customer.getNumberPlate());
             cout << customer << endl << sportsCar << endl;
         }
     }
