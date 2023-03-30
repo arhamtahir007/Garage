@@ -43,11 +43,9 @@ void addVehicle(Customer temp) {
         }
     }
 }
-//Faults in this function in vehicleReturn()
+//Now working absolutely fine 👌
 void returningVehicle() {
     Customer returning = searchCustomer();
-    cout<<"Here 1\n";
-    cout<<returning.getVehicleType()<<endl;
     if (returning.getVehicleType() == "Sedan") {
         Sedan sedan;
         sedan = sedan.dataReading(returning.getNumberPlate());
@@ -82,6 +80,7 @@ Customer searchCustomer() {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     string nameOne, nameTwo, num;
     cout << "Enter First Name:\n";
@@ -116,6 +115,8 @@ Customer searchCustomer() {
         }
     }
     cout << "Record Not Found!\n";
+    Customer null;
+    return null;
 }
 
 void payment() {
@@ -203,6 +204,7 @@ Employee searchEmployee() {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     string nameOne, nameTwo;
     cout << "Enter First Name:\n";
@@ -232,6 +234,8 @@ Employee searchEmployee() {
         }
     }
     cout << "Record Not Found!\n";
+    Employee null;
+    return null;
 }
 
 void removeEmployee() {
@@ -242,6 +246,7 @@ void removeEmployee() {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     read.open("Employee Record.txt", ios::in);
     auto *removeEmp = new Employee[noOfEntries];
@@ -307,8 +312,9 @@ void customerManagement(){
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
     cout<<"Enter 1 to search for a Customer & Vehicle.\n"
-          "Enter 2 to remove a Customer & Vehicle.\n"
-          "Enter 3 to see all Customer records.\n"
+          "Enter 2 to edit a Customer & Vehicle Data.\n"
+          "Enter 3 to remove a Customer & Vehicle.\n"
+          "Enter 4 to see all Customer records.\n"
           "Enter 0 to go back.\n"; //command for output
     cin>>menu; //command for input
     switch (menu) { //switch cases being used to create menu
@@ -334,11 +340,16 @@ void customerManagement(){
         }
 
         case '2':{
-            removeCustomer();
+            removeCustomer(1);
             break;
         }
 
         case '3':{
+            removeCustomer(0);
+            break;
+        }
+
+        case '4':{
             viewAllCusVeh();
             break;
         }
@@ -355,7 +366,7 @@ void customerManagement(){
     goto re;
 }
 
-void removeCustomer(){
+void removeCustomer(int mode) {
     string counter, name1st, name2nd;
     fstream read("Customer Record.txt", ios::in);
     int noOfEntries = 0;
@@ -363,6 +374,7 @@ void removeCustomer(){
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     read.open("Customer Record.txt", ios::in);
     auto *removeCus = new Customer[noOfEntries];
@@ -392,30 +404,28 @@ void removeCustomer(){
             }
         }
     }
+
     if (indexToRemove >= 0) {
-        remove("Customer Record.txt");
-        for (int i = 0; i < noOfEntries; ++i) {
-            if (i != indexToRemove) {
-                removeCus[i].writeToFile();
+        if (mode == 0) {
+            remove("Customer Record.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                if (i != indexToRemove) {
+                    removeCus[i].writeToFile();
+                }
+            }
+            char asking[] = "Customer has been Successfully Removed.\n";
+            for (int i = 0; asking[i] != '\0'; i++) {
+                cout << asking[i];
+                cout.flush();
+                if (asking[i] == '\n')
+                    Sleep(500);
+                else
+                    Sleep(5);
             }
         }
-        char asking[] = "Customer has been Successfully Removed.\n";
-        for (int i = 0; asking[i] != '\0'; i++) {
-            cout << asking[i];
-            cout.flush();
-            if (asking[i] == '\n')
-                Sleep(500);
-            else
-                Sleep(5);
-        }
-        if (removeCus[indexToRemove].getVehicleType() == "Sedan") {
-            removeSedan(removeCus[indexToRemove].getNumberPlate());
-        }
-        else if (removeCus[indexToRemove].getVehicleType() == "HatchBack") {
-            removeHatchBack(removeCus[indexToRemove].getNumberPlate());
-        }
-        else if (removeCus[indexToRemove].getVehicleType() == "SportsCar") {
-            removeSportsCar(removeCus[indexToRemove].getNumberPlate());
+        else if (mode == 1) {
+            customerEdit(removeCus,noOfEntries,indexToRemove);
+            return;
         }
     } else {
         char asking[] = "Customer Record Not Found.\n";
@@ -427,10 +437,18 @@ void removeCustomer(){
             else
                 Sleep(5);
         }
+        return;
+    }
+    if (removeCus[indexToRemove].getVehicleType() == "Sedan") {
+        removeSedan(removeCus[indexToRemove].getNumberPlate(),"*",0);
+    } else if (removeCus[indexToRemove].getVehicleType() == "HatchBack") {
+        removeHatchBack(removeCus[indexToRemove].getNumberPlate(),"*",0);
+    } else if (removeCus[indexToRemove].getVehicleType() == "SportsCar") {
+        removeSportsCar(removeCus[indexToRemove].getNumberPlate(),"*",0);
     }
 }
 
-void removeSedan(string regNum) {
+void removeSedan(string regNum,string numPlateChange,int mode) {
     string input;
     int indexToRemove = -100;
     ifstream output("Sedan Records.txt");
@@ -439,6 +457,7 @@ void removeSedan(string regNum) {
         getline(output, input);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     output.close();
     auto *sedan = new Sedan[noOfEntries];
     output.open("Sedan Records.txt", ios::in);
@@ -460,18 +479,26 @@ void removeSedan(string regNum) {
         }
     }
     if (indexToRemove >= 0) {
-        remove("Sedan Records.txt");
-        for (int i = 0; i < noOfEntries; ++i) {
-            if (i != indexToRemove) {
-                sedan[i].dataRecord();
+        if (mode == 0) {
+            remove("Sedan Records.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                if (i != indexToRemove) {
+                    sedan[i].dataRecord();
+                }
             }
+        }
+        else if (mode == 1){
+            if (numPlateChange != "*") {
+                sedan[indexToRemove].numPlate = numPlateChange;
+            }
+            sedanEdit(sedan,noOfEntries,indexToRemove);
         }
     }
     delete[] sedan;
 }
 
 
-void removeHatchBack(string regNum) {
+void removeHatchBack(string regNum,string numPlateChange,int mode) {
     string input;
     int indexToRemove = -100;
     ifstream output("HatchBack Record.txt");
@@ -480,6 +507,7 @@ void removeHatchBack(string regNum) {
         getline(output, input);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     output.close();
     auto *hatchback = new Hatchback[noOfEntries];
     output.open("HatchBack Record.txt", ios::in);
@@ -500,17 +528,25 @@ void removeHatchBack(string regNum) {
         }
     }
     if (indexToRemove >= 0) {
-        remove("HatchBack Record.txt");
-        for (int i = 0; i < noOfEntries; ++i) {
-            if (i != indexToRemove) {
-                hatchback[i].dataRecord();
+        if (mode == 0) {
+            remove("HatchBack Record.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                if (i != indexToRemove) {
+                    hatchback[i].dataRecord();
+                }
             }
+        }
+        else if (mode == 1){
+            if (numPlateChange != "*") {
+                hatchback[indexToRemove].numPlate = numPlateChange;
+            }
+            hatchBackEdit(hatchback,noOfEntries,indexToRemove);
         }
     }
     delete[] hatchback;
 }
 
-void removeSportsCar(string regNum) {
+void removeSportsCar(string regNum,string numPlateChange,int mode) {
     string counter;
     int indexToRemove = -100;
     fstream out("Sports Car Record.txt", ios::in);
@@ -519,6 +555,7 @@ void removeSportsCar(string regNum) {
         getline(out, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     out.close();
     auto *sc = new SportsCar[noOfEntries];
     out.open("SportsCar Record.txt", ios::in);
@@ -539,11 +576,19 @@ void removeSportsCar(string regNum) {
         }
     }
     if (indexToRemove >= 0) {
-        remove("SportsCar Record.txt");
-        for (int i = 0; i < noOfEntries; ++i) {
-            if (i != indexToRemove) {
-                sc[i].dataRecord();
+        if (mode == 0) {
+            remove("SportsCar Record.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                if (i != indexToRemove) {
+                    sc[i].dataRecord();
+                }
             }
+        }
+        else if (mode == 1){
+            if (numPlateChange != "*") {
+                sc[indexToRemove].numPlate = numPlateChange;
+            }
+            sportsCarEdit(sc,noOfEntries,indexToRemove);
         }
     }
     delete[] sc;
@@ -557,11 +602,12 @@ void viewAllCusVeh() {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     Customer customer;
     string s;int j;
     read.open("Customer Record.txt", ios::in);
-    for (int i = 1; i < noOfEntries; ++i) {
+    for (int i = 0; i < noOfEntries; ++i) {
         read >> customer.first_name;
         read >> customer.second_name;
         read >> customer.contact_no;
@@ -589,4 +635,329 @@ void viewAllCusVeh() {
             cout << customer << endl << sportsCar << endl;
         }
     }
+}
+
+void customerEdit(Customer* ptr,int noOfEntries,int indexToEdit){
+    string numPlateChange = "*";
+    char menu; //variable bing used to navigate in menu
+    re: //goto statement label
+    cout<<"Enter 1 to edit Customer Name.\n"
+          "Enter 2 to edit Customer Contact Number.\n"
+          "Enter 3 to edit Customer Address.\n"
+          "Enter 4 to edit Customer's Vehicle Registration Number.\n "
+          "Enter 5 to edit Customer's Vehicle Details.\n"
+          "Enter 0 to go back.\n"; //command for output
+    cin>>menu; //command for input
+    switch (menu) { //switch cases being used to create menu
+        case '1':{
+            cout<<"Enter First Name:\n";
+            cin>>ptr[indexToEdit].first_name;
+            cout<<"Enter Second Name:\n";
+            cin>>ptr[indexToEdit].second_name;
+            break;
+        }
+
+        case '2':{
+            cout<<"Enter Contact Number:\n";
+            cin>>ptr[indexToEdit].contact_no;
+            break;
+        }
+
+        case '3':{
+            int i;string s;
+            cout << "Enter Customer City Name:" << endl;
+            cin >> s;
+            ptr[indexToEdit].address.setCityName(s);
+            cout << "Enter Customer Area Name:" << endl;
+            cin.ignore();
+            getline(cin, s);
+            ptr[indexToEdit].address.setArea(s);
+            cout << "Enter Customer Street Number:" << endl;
+            cin >> i;
+            ptr[indexToEdit].address.setStreetNumber(i);
+            cout << "Enter Customer House Number:" << endl;
+            cin >> i;
+            ptr[indexToEdit].address.setHouseNumber(i);
+            break;
+        }
+
+        case '4':{
+            numPlateChange = ptr[indexToEdit].number_plate;
+            cout<<"Enter Vehicle Registration Number:\n";
+            cin>>ptr[indexToEdit].number_plate;
+            break;
+        }
+
+        case '5': {
+            if (ptr[indexToEdit].getVehicleType() == "Sedan") {
+                removeSedan(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
+            } else if (ptr[indexToEdit].getVehicleType() == "HatchBack") {
+                removeHatchBack(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
+            } else if (ptr[indexToEdit].getVehicleType() == "SportsCar") {
+                removeSportsCar(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
+            }
+            break;
+        }
+
+        case '0':{
+            remove("Customer Record.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                ptr[i].writeToFile();
+            }
+            return; //end of program
+        }
+
+        default:{
+            cout<<"Invalid Input. Enter again.\n";
+            goto re;
+        }
+    }
+    goto re;
+}
+
+void sedanEdit(Sedan* ptr,int noOfEntries,int indexToEdit){
+    char menu; //variable bing used to navigate in menu
+    re: //goto statement label
+    cout<<"Enter 1 to edit Engine Power.\n"
+          "Enter 2 to edit Color.\n"
+          "Enter 3 to edit Transmission Type.\n"
+          "Enter 4 to edit Fault in Car.\n"
+          "Enter 5 to edit number of AirBags.\n"
+          "Enter 6 to edit type of Power Locks.\n"
+          "Enter 7 to edit type of Power Windows.\n"
+          "Enter 0 to go back.\n"; //command for output
+    cin>>menu; //command for input
+    switch (menu) { //switch cases being used to create menu
+        case '1':{
+            cout<<"Enter Engine Capacity:\n";
+            cin>>ptr[indexToEdit].engineCC;
+            break;
+        }
+
+        case '2':{
+            cout<<"Enter Color:\n";
+            cin>>ptr[indexToEdit].color;
+            break;
+        }
+
+        case '3':{
+            gI:
+            cout<<"Enter Transmission Type:\n";
+            cin>>ptr[indexToEdit].transmissionType;
+            if (ptr[indexToEdit].transmissionType != "auto" && ptr[indexToEdit].transmissionType != "Auto" && ptr[indexToEdit].transmissionType != "manual" && ptr[indexToEdit].transmissionType != "Manual"){
+                cout<<"Enter \"Auto\" or \"Manual\" only.\n";
+                goto gI;
+            }
+            break;
+        }
+
+        case '4':{
+            cin.ignore();
+            cout<<"Enter briefly about Faults in "<<ptr[indexToEdit].vehicleType<<":\n";
+            getline(cin,ptr[indexToEdit].fault);
+            break;
+        }
+
+        case '5':{
+            cout << "Enter number of Airbags:" << endl;
+            cin >> ptr[indexToEdit].airBags;
+            break;
+        }
+
+        case '6':{
+            cout << "Enter type of Power locks:"<< endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
+            cin >> ptr[indexToEdit].powerLocks;
+            while (true) {
+                if (ptr[indexToEdit].powerLocks != "single" && ptr[indexToEdit].powerLocks != "Single" && ptr[indexToEdit].powerLocks != "dual" &&
+                ptr[indexToEdit].powerLocks != "Dual") {
+                    cout << "Enter \"single \" or \"dual\" only.\n";
+                    cin >> ptr[indexToEdit].powerLocks;
+                }
+                else
+                    break;
+            }
+            break;
+        }
+
+        case '7':{
+            cout<<"Type of Power Windows:\n";
+            cin >> ptr[indexToEdit].powerWindows;// window locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
+            while (true) {
+                if (ptr[indexToEdit].powerWindows != "single" && ptr[indexToEdit].powerWindows != "Single" && ptr[indexToEdit].powerWindows != "dual" &&
+                ptr[indexToEdit].powerWindows != "Dual") {
+                    cout << "Enter \"single \" or \"dual\" only.\n";
+                    cin >> ptr[indexToEdit].powerWindows;
+                }
+                else
+                    break;
+            }
+            break;
+        }
+
+        case '0':{
+            remove("Sedan Records.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                ptr[i].dataRecord();
+            }
+            return; //end of program
+        }
+
+        default:{
+            cout<<"Invalid Input. Enter again.\n";
+            goto re;
+        }
+    }
+    goto re;
+
+}
+
+void hatchBackEdit(Hatchback* ptr,int noOfEntries,int indexToEdit){
+    char menu; //variable bing used to navigate in menu
+    re: //goto statement label
+    cout<<"Enter 1 to edit Engine Power.\n"
+          "Enter 2 to edit Color.\n"
+          "Enter 3 to edit Transmission Type.\n"
+          "Enter 4 to edit Fault in Car.\n"
+          "Enter 5 to edit number of AirBags.\n"
+          "Enter 6 to edit type of Power Locks.\n"
+          "Enter 0 to go back.\n"; //command for output
+    cin>>menu; //command for input
+    switch (menu) { //switch cases being used to create menu
+        case '1':{
+            cout<<"Enter Engine Capacity:\n";
+            cin>>ptr[indexToEdit].engineCC;
+            break;
+        }
+
+        case '2':{
+            cout<<"Enter Color:\n";
+            cin>>ptr[indexToEdit].color;
+            break;
+        }
+
+        case '3':{
+            gI:
+            cout<<"Enter Transmission Type:\n";
+            cin>>ptr[indexToEdit].transmissionType;
+            if (ptr[indexToEdit].transmissionType != "auto" && ptr[indexToEdit].transmissionType != "Auto" && ptr[indexToEdit].transmissionType != "manual" && ptr[indexToEdit].transmissionType != "Manual"){
+                cout<<"Enter \"Auto\" or \"Manual\" only.\n";
+                goto gI;
+            }
+            break;
+        }
+
+        case '4':{
+            cin.ignore();
+            cout<<"Enter briefly about Faults in "<<ptr[indexToEdit].vehicleType<<":\n";
+            getline(cin,ptr[indexToEdit].fault);
+            break;
+        }
+
+        case '5':{
+            cout<<"Enter Number of AirBags:\n";
+            cin>>ptr[indexToEdit].airBags;
+            break;
+        }
+
+        case '6':{
+            cout << "Enter type of Power locks:"<< endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
+            cin >> ptr[indexToEdit].powerLocks;
+            while (true) {
+                if (ptr[indexToEdit].powerLocks != "single" && ptr[indexToEdit].powerLocks != "Single" && ptr[indexToEdit].powerLocks != "dual" &&
+                    ptr[indexToEdit].powerLocks != "Dual") {
+                    cout << "Enter \"single \" or \"dual\" only.\n";
+                    cin >> ptr[indexToEdit].powerLocks;
+                }
+                else
+                    break;
+            }
+            break;
+        }
+
+        case '0': {
+            remove("HatchBack Record.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                ptr[i].dataRecord();
+            }
+            return;
+        }
+
+        default:{
+            cout<<"Invalid Input. Enter again.\n";
+            goto re;
+        }
+    }
+    goto re;
+
+}
+
+void sportsCarEdit(SportsCar* ptr,int noOfEntries,int indexToEdit) {
+    char menu; //variable bing used to navigate in menu
+    re: //goto statement label
+    cout << "Enter 1 to edit Engine Power.\n"
+            "Enter 2 to edit Color.\n"
+            "Enter 3 to edit Transmission Type.\n"
+            "Enter 4 to edit Fault in Car.\n"
+            "Enter 5 to edit Turbo Type.\n"
+            "Enter 6 to edit Spoiler Type.\n"
+            "Enter 0 to go back.\n"; //command for output
+    cin >> menu; //command for input
+    switch (menu) { //switch cases being used to create menu
+        case '1': {
+            cout << "Enter Engine Capacity:\n";
+            cin >> ptr[indexToEdit].engineCC;
+            break;
+        }
+
+        case '2': {
+            cout << "Enter Color:\n";
+            cin >> ptr[indexToEdit].color;
+            break;
+        }
+
+        case '3': {
+            gI:
+            cout << "Enter Transmission Type:\n";
+            cin >> ptr[indexToEdit].transmissionType;
+            if (ptr[indexToEdit].transmissionType != "auto" && ptr[indexToEdit].transmissionType != "Auto" &&
+                ptr[indexToEdit].transmissionType != "manual" && ptr[indexToEdit].transmissionType != "Manual") {
+                cout << "Enter \"Auto\" or \"Manual\" only.\n";
+                goto gI;
+            }
+            break;
+        }
+
+        case '4': {
+            cin.ignore();
+            cout << "Enter briefly about Faults in " << ptr[indexToEdit].vehicleType << ":\n";
+            getline(cin, ptr[indexToEdit].fault);
+            break;
+        }
+
+        case '5': {
+            cout << "Enter Turbo Type:\n";
+            cin >> ptr[indexToEdit].turboType;
+            break;
+        }
+
+        case '6': {
+            cout << "Enter Spoiler Type:\n";
+            cin >> ptr[indexToEdit].spoilerType;
+            break;
+        }
+
+        case '0': {
+            remove("SportsCar Record.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                ptr[i].dataRecord();
+            }
+            return;
+        }
+
+        default: {
+            cout << "Invalid Input. Enter again.\n";
+            goto re;
+        }
+    }
+    goto re;
 }

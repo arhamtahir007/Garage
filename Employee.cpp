@@ -54,10 +54,11 @@ void readFromFileEmployee() {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     read.open("Employee Record.txt",ios::in);
     string s;int j;
-    for (int i = 1; i < noOfEntries; ++i) {
+    for (int i = 0; i < noOfEntries; ++i) {
         read >> temp.first_name;
         read >> temp.second_name;
         read >> temp.contact_no;

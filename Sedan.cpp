@@ -19,6 +19,7 @@ Sedan Sedan::dataReading(string temp) {
         getline(output, input);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     output.close();
     output.open("SedanRecords.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
@@ -39,6 +40,8 @@ Sedan Sedan::dataReading(string temp) {
         }
     }
     cout << "Record Not Found.\n";
+    Sedan null;
+    return null;
 }
 
 void Sedan::dataRecord() {
