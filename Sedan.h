@@ -20,7 +20,9 @@ public:
     Sedan dataReading(string temp); //filing data reading function
     void dataRecord();// storing data
 
-    friend void removeSedan(string);
+    friend void removeSedan(string,string,int);
+    friend void sedanEdit(Sedan*,int,int);
+
 
     friend istream &operator >> (istream& ,Sedan&);
     friend ostream &operator << (ostream& ,const Sedan& );

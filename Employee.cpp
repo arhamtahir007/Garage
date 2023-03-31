@@ -45,10 +45,12 @@ void readFromFileEmployee() {
     Employee temp;
     string counter;
     fstream read("Employee Record.txt",ios::in);
-    int noOfEntries = 0;while (!read.eof()) {
+    int noOfEntries = 0;
+    while (!read.eof()) {
         getline(read, counter);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     read.close();
     read.open("Employee Record.txt",ios::in);
     string s;int j;

@@ -18,16 +18,26 @@ void payment();
 
 void employeeManagement();
 
-void removeEmployee();
+void removeEmployee(int mode);
 
-void removeCustomer();
+void removeCustomer(int);
 
 void customerManagement();
 
-void removeSedan(string regNum);
+void removeSedan(string regNum,string numPlateChange,int);
 
-void removeHatchBack(string regNum);
+void removeHatchBack(string regNum,string numPlateChange,int);
 
-void removeSportsCar(string regNum);
+void removeSportsCar(string regNum,string numPlateChange,int);
 
 void viewAllCusVeh();
+
+void customerEdit(Customer*,int,int);
+
+void sedanEdit(Sedan*,int,int);
+
+void hatchBackEdit(Hatchback*,int,int);
+
+void sportsCarEdit(SportsCar*,int,int);
+
+void employeeEdit(Employee*,int,int);

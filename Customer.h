@@ -23,8 +23,9 @@ public:
 //    friend void readFromFileCustomer();
 
     friend Customer searchCustomer();
-    friend void removeCustomer();
+    friend void removeCustomer(int);
     friend void viewAllCusVeh();
+    friend void customerEdit(Customer*,int,int);
 
     friend istream &operator >> (istream& input,Customer& person);
     friend ostream &operator << (ostream& output,const Customer& person);

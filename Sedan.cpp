@@ -9,14 +9,15 @@ void Sedan::vehicleReturn() {   //virtual function call as in other car classes
 Sedan Sedan::dataReading(string temp) {
     Sedan car;
     string input;
-    ifstream output("Sedan Records.txt");
+    ifstream output("SedanRecords.txt");
     int noOfEntries = 0;
     while (!output.eof()) {
         getline(output, input);
         noOfEntries++;
     }
+    noOfEntries = noOfEntries - 1;
     output.close();
-    output.open("Sedan Records.txt", ios::in);
+    output.open("SedanRecords.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         output >> car.numPlate;
         output >> car.noOfDoors;
@@ -35,6 +36,8 @@ Sedan Sedan::dataReading(string temp) {
         }
     }
     cout << "Record Not Found.\n";
+    Sedan null;
+    return null;
 }
 
 void Sedan::dataRecord() {
@@ -66,7 +69,7 @@ istream &operator>>(istream &input, Sedan &car) {
             break;
     }
 
-
+        cout<<"Type of Power Windows:\n";
         input>> car.powerWindows;// window locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
     while (true) {
         if (car.powerWindows != "single" && car.powerWindows != "Single" && car.powerWindows != "dual" &&
@@ -105,8 +108,6 @@ istream &operator>>(istream &input, Sedan &car) {
             break;
     }
     return input;
-
-
 }
 
 ostream &operator<<(ostream &out, const Sedan &obj) {
