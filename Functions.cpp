@@ -281,9 +281,7 @@ void removeEmployee(int mode) {
             }
         }
     }
-    for (int i = 0; i < noOfEntries; ++i) {
-        cout<<removeEmp[i];
-    }
+    
     if (indexToRemove >= 0) {
         if (mode == 0) {
             remove("Employee Record.txt");

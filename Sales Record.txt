@@ -1,2 +1,2 @@
-TotalSales: 1848 Rs
-VehicleRepaired: 4
+TotalSales: 0 Rs
+VehicleRepaired: 0
