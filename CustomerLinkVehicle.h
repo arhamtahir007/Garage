@@ -3,6 +3,7 @@
 
 #endif //MAIN_CPP_CUSTOMERLINKVEHICLE_H
 #include "Hatchback.h"
+#include "Bus.h"
 
 template<typename T>
 class CusVeh{ //This class will be used for association and aggregation

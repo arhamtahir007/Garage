@@ -1,2 +1,0 @@
-TotalSales: 0 Rs
-VehicleRepaired: 0

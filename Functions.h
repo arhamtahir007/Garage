@@ -3,7 +3,6 @@
 
 #endif //SEDAN_CPP_FUNCTIONS_H
 #include "LogIn.h"
-#include "Bus.h"
 #include "CustomerLinkVehicle.h"
 
 void addVehicle(Customer temp);
@@ -30,6 +29,8 @@ void removeHatchBack(string regNum,string numPlateChange,int);
 
 void removeSportsCar(string regNum,string numPlateChange,int);
 
+void removeBus(string, string, int);
+
 void viewAllCusVeh();
 
 void customerEdit(Customer*,int,int);
@@ -39,5 +40,7 @@ void sedanEdit(Sedan*,int,int);
 void hatchBackEdit(Hatchback*,int,int);
 
 void sportsCarEdit(SportsCar*,int,int);
+
+void busEdit(Bus*, int, int);
 
 void employeeEdit(Employee*,int,int);

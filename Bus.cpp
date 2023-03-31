@@ -8,10 +8,53 @@ Bus::Bus()
 
 void Bus::dataRecord()
 {
-    ofstream ofile("Bus Record.txt");       //opening bus record file
+    fstream ofile("Bus Record.txt", ios::out| ios::app);       //opening bus record file
     ofile<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "<<color<<" "
     <<transmissionType<<" "<<vehicleType<<" "<<lcd<<" "<<fault;                     //writing all data of bus object to file
     ofile.close();          //closing file
+}
+
+void Bus::vehicleReturn()
+{
+    cout<<"\nClassification of Car: "<<vehicleType<<endl;
+    cout<<"\nRegistration Number: "<<numPlate<<endl;
+    cout<<"\nColor: "<<color<<endl;
+}
+
+Bus Bus::dataReading(string plate)
+{
+    Bus bus;
+    string counter;
+    ifstream ifile("Bus Record.txt");
+    int noOfEntries = 0;
+    while (!ifile.eof())
+    {
+        getline(ifile, counter);
+        noOfEntries++;
+    }
+    noOfEntries = noOfEntries - 1;
+    ifile.close();
+    ifile.open("Bus Record.txt");
+    for (int i = 0; i < noOfEntries; ++i)
+    {
+        ifile >> bus.numPlate;
+        ifile >> bus.noOfDoors;
+        ifile >> bus.noOfTyres;
+        ifile >> bus.noOfSeats;
+        ifile >> bus.engineCC;
+        ifile >> bus.color;
+        ifile >> bus.transmissionType;
+        ifile >> bus.vehicleType;
+        ifile >> bus.lcd;
+        getline(ifile, bus.fault);
+        if (plate == bus.numPlate)
+        {
+            return bus;
+        }
+    }
+    cout << "\nRecord Not Found.\n";
+    Bus null;
+    return null;
 }
 
 ostream &operator <<(ostream &out, Bus &a)
@@ -63,11 +106,4 @@ istream &operator >>(istream &in, Bus &a)
         goto err3;          //goes to err3 on line 43
     }
     return in;
-}
-
-void Bus::vehicleReturn()
-{
-    cout<<"\nClassification of Car: "<<vehicleType<<endl;
-    cout<<"\nRegistration Number: "<<numPlate<<endl;
-    cout<<"\nColor: "<<color<<endl;
 }

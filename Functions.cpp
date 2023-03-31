@@ -1,16 +1,13 @@
-//
-// Created by HP on 3/26/2023.
-//
-
 #include "Functions.h"
 //working properly 👍
 void addVehicle(Customer temp) {
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
-    cout << "Type of Vehicle of Customer:\n"
-            "1. Sedan\n"
-            "2. HatchBack\n"
-            "3. Sports Car\n";
+    cout << "\n\nSelect Type of Vehicle of Customer:"
+            "\n\t\t1. Sedan\n"
+            "\t\t2. HatchBack\n"
+            "\t\t3. Sports Car\n"
+            "\t\t4. Bus\n\n";
     cin >> menu; //command for input
     switch (menu) { //switch cases being used to create menu
         case '1': {
@@ -37,6 +34,14 @@ void addVehicle(Customer temp) {
             break;
         }
 
+        case '4':
+        {
+            Bus bus;
+            cin>>bus;
+            CusVeh<Bus> save(&temp, &bus);
+            save.filing();
+            break;
+        }
         default: {
             cout << "Invalid Input. Enter a number.\n";
             goto re;
@@ -46,29 +51,54 @@ void addVehicle(Customer temp) {
 //Now working absolutely fine 👌
 void returningVehicle() {
     Customer returning = searchCustomer();
-    if (returning.getVehicleType() == "Sedan") {
+    Sleep(1000);
+    system("clear");
+    cout<<"\n\n\n\t\t\tReturning Vehicle\n\n";
+    if (returning.getVehicleType() == "Sedan")
+    {
         Sedan sedan;
         sedan = sedan.dataReading(returning.getNumberPlate());
         Vehicle *veh = &sedan;
         cout << returning;
         veh->vehicleReturn();
+        Sleep(1000);
         payment();
-    } else if (returning.getVehicleType() == "HatchBack") {
+    }
+    else if (returning.getVehicleType() == "HatchBack")
+    {
         Hatchback hatchback;
         hatchback = hatchback.dataReading(returning.getNumberPlate());
         Vehicle *veh = &hatchback;
         cout << returning;
         veh->vehicleReturn();
+        Sleep(1000);
         payment();
-    } else if (returning.getVehicleType() == "SportsCar") {
+    }
+    else if (returning.getVehicleType() == "SportsCar")
+    {
         SportsCar sportsCar;
         sportsCar = sportsCar.dataReading(returning.getNumberPlate());
         Vehicle *veh = &sportsCar;
         cout << returning;
         veh->vehicleReturn();
+        Sleep(1000);
         payment();
-    } else
-        cout << "No Record Found.\n";
+    }
+    else if(returning.getVehicleType() == "Bus")
+    {
+        Bus bus;
+        bus = bus.dataReading(returning.getNumberPlate());
+        Vehicle *veh = &bus;
+        cout << returning;
+        veh->vehicleReturn();
+        Sleep(1000);
+        payment();
+    }
+    else
+        cout << "\nNo Record Found.\n";
+    cin.ignore();
+    cout<<"\nPress Enter key to continue\n\n";
+    cin.get();
 }
 
 Customer searchCustomer() {
@@ -83,11 +113,12 @@ Customer searchCustomer() {
     noOfEntries = noOfEntries - 1;
     read.close();
     string nameOne, nameTwo, num;
-    cout << "Enter First Name:\n";
+    system("clear");
+    cout << "\n\nEnter First Name of customer: ";
     cin >> nameOne;
-    cout << "Enter Second Name:\n";
+    cout << "\n\nEnter Second Name of customer: ";
     cin >> nameTwo;
-    cout << "Enter Vehicle Registration Number:\n";
+    cout << "\n\nEnter Vehicle Registration Number: ";
     cin >> num;
     read.open("Customer Record.txt", ios::in);
     string s;
@@ -114,23 +145,25 @@ Customer searchCustomer() {
             }
         }
     }
-    cout << "Record Not Found!\n";
+    cout << "\n\n\t\t\tRecord Not Found!\n";
+    Sleep(1500);
     Customer null;
     return null;
 }
 
 void payment() {
     double charged, payed, returned;
-    cout << "Amount Charged:\n";
+    cout<<"\n\n\t\t\tGenerate Receipt\n\n";
+    cout << "\nAmount Charged: ";
     cin >> charged;
     rePay:
-    cout << "Amount Payed:\n";
+    cout << "\nAmount Payed: ";
     cin >> payed;
     if (payed < charged) {
         cout << "Least payable amount is " << charged << " Rs.\n";
         goto rePay;
     }
-    cout << "Change:\n";
+    cout << "\nChange: ";
     returned = payed - charged;
     cout << returned << " Rs\n";
     fstream file("Sales Record.txt", ios::in);
@@ -151,7 +184,8 @@ void payment() {
 void employeeManagement() {
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
-    cout << "Enter 1 to search for an Employee.\n"
+    system("clear");
+    cout << "\n\n\n\t\t\tEmployeeManagement\n\nEnter 1 to search for an Employee.\n"
             "Enter 2 to add an Employee.\n"
             "Enter 3 to edit an Employee Data.\n"
             "Enter 4 to remove an Employee.\n"
@@ -161,8 +195,12 @@ void employeeManagement() {
     switch (menu) { //switch cases being used to create menu
         case '1': {
             Employee employee = searchEmployee();
-            if (!employee.getFirstName().empty()) {
+            if (!employee.getFirstName().empty())
+            {
                 cout << employee;
+                cin.ignore();
+                cout<<"\n\npress enter key to continue";
+                cin.get();
             }
             break;
         }
@@ -171,6 +209,8 @@ void employeeManagement() {
             Employee employee;
             cin >> employee;
             employee.writeToFile();
+            cout<<"\n\nEmployee added\n";
+            Sleep(1200);
             break;
         }
 
@@ -186,6 +226,9 @@ void employeeManagement() {
 
         case '5': {
             readFromFileEmployee();
+            cin.ignore();
+            cout<<"\n\npress enter key to continue";
+            cin.get();
             break;
         }
 
@@ -195,6 +238,7 @@ void employeeManagement() {
 
         default: {
             cout << "Invalid Input. Enter again.\n";
+            Sleep(1200);
             goto re;
         }
     }
@@ -256,9 +300,9 @@ void removeEmployee(int mode) {
     read.close();
     read.open("Employee Record.txt", ios::in);
     auto *removeEmp = new Employee[noOfEntries];
-    cout << "Enter First Name of Employee:\n";
+    cout << "\nEnter First Name of Employee: ";
     cin >> name1st;
-    cout << "Enter second Name of Employee:\n";
+    cout << "\nEnter second Name of Employee: ";
     cin >> name2nd;
     string s;
     int j, indexToRemove = -100;
@@ -321,7 +365,8 @@ void removeEmployee(int mode) {
 void customerManagement(){
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
-    cout<<"Enter 1 to search for a Customer & Vehicle.\n"
+    system("clear");
+    cout<<"\n\n\t\t\tCustomer Management\n\n\nEnter 1 to search for a Customer & Vehicle.\n"
           "Enter 2 to edit a Customer & Vehicle Data.\n"
           "Enter 3 to remove a Customer & Vehicle.\n"
           "Enter 4 to see all Customer records.\n"
@@ -330,21 +375,41 @@ void customerManagement(){
     switch (menu) { //switch cases being used to create menu
         case '1': {
             Customer customer = searchCustomer();
-            if (customer.getVehicleType() == "Sedan") {
+            if (customer.getVehicleType() == "Sedan")
+            {
                 Sedan sedan;
                 sedan = sedan.dataReading(customer.getNumberPlate());
-                cout << customer << endl;
-                cout << sedan << endl;
-            } else if (customer.getVehicleType() == "HatchBack") {
+                cout<<"\n\t\t\tCustomer data\n\n"<<customer<<"\n\n\t\t\tVehicle Data\n\n"<<sedan;
+                cin.ignore();
+                cout<<"\n\n\nPress Enter key to continue\n";
+                cin.get();
+            }
+            else if (customer.getVehicleType() == "HatchBack")
+            {
                 Hatchback hatchback;
                 hatchback = hatchback.dataReading(customer.getNumberPlate());
-                cout << customer << endl;
-                cout<< hatchback << endl;
-            } else if (customer.getVehicleType() == "SportsCar") {
+                cout<<"\n\t\t\tCustomer data\n\n"<<customer<<"\n\n\t\t\tVehicle Data\n\n"<<hatchback;
+                cin.ignore();
+                cout<<"\n\n\nPress Enter key to continue\n";
+                cin.get();
+            }
+            else if (customer.getVehicleType() == "SportsCar")
+            {
                 SportsCar sportsCar;
                 sportsCar = sportsCar.dataReading(customer.getNumberPlate());
-                cout << customer << endl;
-                cout << sportsCar << endl;
+                cout<<"\n\t\t\tCustomer data\n\n"<<customer<<"\n\n\t\t\tVehicle Data\n\n"<<sportsCar;
+                cin.ignore();
+                cout<<"\n\n\nPress Enter key to continue\n";
+                cin.get();
+            }
+            else if(customer.getVehicleType() == "Bus")
+            {
+                Bus bus;
+                bus = bus.dataReading(customer.getNumberPlate());
+                cout<<"\n\t\t\tCustomer data\n\n"<<customer<<"\n\n\t\t\tVehicle Data\n\n"<<bus;
+                cin.ignore();
+                cout<<"\n\n\nPress Enter key to continue\n";
+                cin.get();
             }
             break;
         }
@@ -388,9 +453,9 @@ void removeCustomer(int mode) {
     read.close();
     read.open("Customer Record.txt", ios::in);
     auto *removeCus = new Customer[noOfEntries];
-    cout << "Enter First Name of Customer:\n";
+    cout << "\nEnter First Name of Customer: ";
     cin >> name1st;
-    cout << "Enter second Name of Customer:\n";
+    cout << "\nEnter second Name of Customer: ";
     cin >> name2nd;
     string s;
     int j, indexToRemove = -100;
@@ -456,6 +521,10 @@ void removeCustomer(int mode) {
     } else if (removeCus[indexToRemove].getVehicleType() == "SportsCar") {
         removeSportsCar(removeCus[indexToRemove].getNumberPlate(),"*",0);
     }
+    else if (removeCus[indexToRemove].getVehicleType() == "Bus")
+    {
+        removeBus(removeCus[indexToRemove].getNumberPlate(),"*",0);
+    }
 }
 
 void removeSedan(string regNum,string numPlateChange,int mode) {
@@ -506,7 +575,6 @@ void removeSedan(string regNum,string numPlateChange,int mode) {
     }
     delete[] sedan;
 }
-
 
 void removeHatchBack(string regNum,string numPlateChange,int mode) {
     string input;
@@ -604,6 +672,60 @@ void removeSportsCar(string regNum,string numPlateChange,int mode) {
     delete[] sc;
 }
 
+void removeBus(string regNum, string numPlateChange, int mode)
+{
+    string counter;
+    int indexToRemove = -100;
+    ifstream ifile("Bus Record.txt");
+    int noOfEntries = 0;
+    while (!ifile.eof()) {
+        getline(ifile, counter);
+        noOfEntries++;
+    }
+    noOfEntries = noOfEntries - 1;
+    ifile.close();
+    auto *bus = new Bus [noOfEntries];
+    ifile.open("SportsCar Record.txt", ios::in);
+    for (int i = 0; i < noOfEntries; ++i) {
+        ifile >> bus[i].numPlate;
+        ifile >> bus[i].noOfDoors;
+        ifile >> bus[i].noOfTyres;
+        ifile >> bus[i].noOfSeats;
+        ifile >> bus[i].engineCC;
+        ifile >> bus[i].color;
+        ifile >> bus[i].transmissionType;
+        ifile >> bus[i].vehicleType;
+        ifile >> bus[i].lcd;
+        getline(ifile, bus[i].fault);
+        if (bus[i].numPlate == regNum)
+        {
+            indexToRemove = i;
+        }
+    }
+    if (indexToRemove >= 0)
+    {
+        if (mode == 0) {
+            remove("SportsCar Record.txt");
+            for (int i = 0; i < noOfEntries; ++i)
+            {
+                if (i != indexToRemove)
+                {
+                    bus[i].dataRecord();
+                }
+            }
+        }
+        else if (mode == 1)
+        {
+            if (numPlateChange != "*")
+            {
+                bus[indexToRemove].numPlate = numPlateChange;
+            }
+            busEdit(bus,noOfEntries,indexToRemove);
+        }
+    }
+    delete[] bus;
+}
+
 void viewAllCusVeh() {
     string counter;
     fstream read("Customer Record.txt", ios::in);
@@ -631,27 +753,42 @@ void viewAllCusVeh() {
         customer.address.setHouseNumber(j);
         getline(read, s);
         customer.address.setArea(s);
-        if (customer.getVehicleType() == "Sedan") {
+        if (customer.getVehicleType() == "Sedan")
+        {
             Sedan sedan;
             sedan = sedan.dataReading(customer.getNumberPlate());
-            cout << customer << endl << sedan << endl;
-        } else if (customer.getVehicleType() == "HatchBack") {
+            cout<<"\n\t\t\tCustomer data\n\n"<<customer<<"\n\n\t\t\tVehicle Data\n\n"<<sedan;
+        }
+        else if (customer.getVehicleType() == "HatchBack")
+        {
             Hatchback hatchback;
             hatchback = hatchback.dataReading(customer.getNumberPlate());
-            cout << customer << endl << hatchback << endl;
-        } else if (customer.getVehicleType() == "SportsCar") {
+            cout<<"\n\t\t\tCustomer data\n\n"<<customer<<"\n\n\t\t\tVehicle Data\n\n"<<hatchback;
+        }
+        else if (customer.getVehicleType() == "SportsCar")
+        {
             SportsCar sportsCar;
             sportsCar = sportsCar.dataReading(customer.getNumberPlate());
-            cout << customer << endl << sportsCar << endl;
+            cout<<"\n\t\t\tCustomer data\n\n"<<customer<<"\n\n\t\t\tVehicle Data\n\n"<<sportsCar;
+        }
+        else if(customer.getVehicleType() == "Bus")
+        {
+            Bus bus;
+            bus = bus.dataReading(customer.getNumberPlate());
+            cout<<"\n\t\t\tCustomer data\n\n"<<customer<<"\n\n\t\t\tVehicle Data\n\n"<<bus;
         }
     }
+    cin.ignore();
+    cout<<"\nPress Enter to continue";
+    cin.get();
 }
 
 void customerEdit(Customer* ptr,int noOfEntries,int indexToEdit){
     string numPlateChange = "*";
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
-    cout<<"Enter 1 to edit Customer Name.\n"
+    system("clear");
+    cout<<"\n\n\t\t\t\tEdit Customer Data\n\nEnter 1 to edit Customer Name.\n"
           "Enter 2 to edit Customer Contact Number.\n"
           "Enter 3 to edit Customer Address.\n"
           "Enter 4 to edit Customer's Vehicle Details.\n"
@@ -659,57 +796,73 @@ void customerEdit(Customer* ptr,int noOfEntries,int indexToEdit){
     cin>>menu; //command for input
     switch (menu) { //switch cases being used to create menu
         case '1':{
-            cout<<"Enter First Name:\n";
+            cout<<"\nEnter First Name: ";
             cin>>ptr[indexToEdit].first_name;
-            cout<<"Enter Second Name:\n";
+            cout<<"\nEnter Second Name: ";
             cin>>ptr[indexToEdit].second_name;
+            cout<<"\n\nName edited\n";
+            Sleep(1200);
             break;
         }
 
         case '2':{
-            cout<<"Enter Contact Number:\n";
+            cout<<"\nEnter Contact Number: ";
             cin>>ptr[indexToEdit].contact_no;
+            cout<<"\n\nContact number edited\n";
+            Sleep(1200);
             break;
         }
 
         case '3':{
             int i;string s;
-            cout << "Enter Customer City Name:" << endl;
+            cout << "\nEnter Customer City Name: ";
             cin >> s;
             ptr[indexToEdit].address.setCityName(s);
-            cout << "Enter Customer Area Name:" << endl;
+            cout << "\nEnter Customer Area Name: ";
             cin.ignore();
             getline(cin, s);
             ptr[indexToEdit].address.setArea(s);
-            cout << "Enter Customer Street Number:" << endl;
+            cout << "\nEnter Customer Street Number: ";
             cin >> i;
             ptr[indexToEdit].address.setStreetNumber(i);
-            cout << "Enter Customer House Number:" << endl;
+            cout << "\nEnter Customer House Number: ";
             cin >> i;
             ptr[indexToEdit].address.setHouseNumber(i);
+            cout<<"\n\nCustomer Details edited\n";
+            Sleep(1500);
             break;
         }
 
         case '4': {
             char numPlate;
             caseIV:
-            cout << "Do you wish to change Vehicle Registration Number? (y/n)\n";
+            cout << "\nDo you wish to change Vehicle Registration Number? (y/n): ";
             cin >> numPlate;
             if (numPlate != 'y' && numPlate != 'n') {
-                cout << "Invalid Input. Enter Again:\n";
-                goto caseIV; //goto line 690
+                cout << "\nInvalid Input. Enter Again:\n";
+                Sleep(800);
+                goto caseIV; //goto line 818
             }
             if (numPlate == 'y') {
                 numPlateChange = ptr[indexToEdit].number_plate;
-                cout << "Enter Vehicle Registration Number:\n";
+                cout << "\nEnter Vehicle Registration Number: ";
                 cin >> ptr[indexToEdit].number_plate;
             }
-            if (ptr[indexToEdit].getVehicleType() == "Sedan") {
+            if (ptr[indexToEdit].getVehicleType() == "Sedan")
+            {
                 removeSedan(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
-            } else if (ptr[indexToEdit].getVehicleType() == "HatchBack") {
+            }
+            else if (ptr[indexToEdit].getVehicleType() == "HatchBack")
+            {
                 removeHatchBack(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
-            } else if (ptr[indexToEdit].getVehicleType() == "SportsCar") {
+            }
+            else if (ptr[indexToEdit].getVehicleType() == "SportsCar")
+            {
                 removeSportsCar(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
+            }
+            else if(ptr[indexToEdit].getVehicleType()=="Bus")
+            {
+                removeBus(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
             }
             break;
         }
@@ -723,7 +876,8 @@ void customerEdit(Customer* ptr,int noOfEntries,int indexToEdit){
         }
 
         default:{
-            cout<<"Invalid Input. Enter again.\n";
+            cout<<"\nInvalid Input. Enter again.\n";
+            Sleep(1200);
             goto re;
         }
     }
@@ -733,7 +887,7 @@ void customerEdit(Customer* ptr,int noOfEntries,int indexToEdit){
 void sedanEdit(Sedan* ptr,int noOfEntries,int indexToEdit){
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
-    cout<<"Enter 1 to edit Engine Power.\n"
+    cout<<"\n\n\t\t\tEdit Sedan\n\nEnter 1 to edit Engine Power.\n"
           "Enter 2 to edit Color.\n"
           "Enter 3 to edit Transmission Type.\n"
           "Enter 4 to edit Fault in Car.\n"
@@ -744,23 +898,23 @@ void sedanEdit(Sedan* ptr,int noOfEntries,int indexToEdit){
     cin>>menu; //command for input
     switch (menu) { //switch cases being used to create menu
         case '1':{
-            cout<<"Enter Engine Capacity:\n";
+            cout<<"\nEnter Engine Capacity: ";
             cin>>ptr[indexToEdit].engineCC;
             break;
         }
 
         case '2':{
-            cout<<"Enter Color:\n";
+            cout<<"\nEnter Color: ";
             cin>>ptr[indexToEdit].color;
             break;
         }
 
         case '3':{
             gI:
-            cout<<"Enter Transmission Type:\n";
+            cout<<"\nEnter Transmission Type: ";
             cin>>ptr[indexToEdit].transmissionType;
             if (ptr[indexToEdit].transmissionType != "auto" && ptr[indexToEdit].transmissionType != "Auto" && ptr[indexToEdit].transmissionType != "manual" && ptr[indexToEdit].transmissionType != "Manual"){
-                cout<<"Enter \"Auto\" or \"Manual\" only.\n";
+                cout<<"\nEnter \"Auto\" or \"Manual\" only.\n";
                 goto gI;
             }
             break;
@@ -768,13 +922,13 @@ void sedanEdit(Sedan* ptr,int noOfEntries,int indexToEdit){
 
         case '4':{
             cin.ignore();
-            cout<<"Enter briefly about Faults in "<<ptr[indexToEdit].vehicleType<<":\n";
+            cout<<"\nEnter briefly about Faults in "<<ptr[indexToEdit].vehicleType<<": ";
             getline(cin,ptr[indexToEdit].fault);
             break;
         }
 
         case '5':{
-            cout << "Enter number of Airbags:" << endl;
+            cout << "\nEnter number of Airbags: ";
             cin >> ptr[indexToEdit].airBags;
             break;
         }
@@ -977,10 +1131,74 @@ void sportsCarEdit(SportsCar* ptr,int noOfEntries,int indexToEdit) {
     goto re;
 }
 
+void busEdit(Bus *ptr, int noOfEntries, int indexToEdit)
+{
+    char menu;          //variable to navigate through menu
+    re:
+    cout << "Enter 1 to edit Engine Power\nEnter 2 to edit Color\nEnter 3 to edit Transmission Type\nEnter 4 to edit Fault in Car\nEnter 0 to go back\n";
+    cin >> menu;
+    switch (menu)
+    {
+        case '1':
+        {
+            cout << "\nEnter Engine Capacity: ";
+            cin >> ptr[indexToEdit].engineCC;
+            break;
+        }
+
+        case '2':
+        {
+            cout << "\nEnter Color: ";
+            cin >> ptr[indexToEdit].color;
+            break;
+        }
+
+        case '3':
+        {
+            err1:
+            cout << "\nEnter Transmission Type: ";
+            cin >> ptr[indexToEdit].transmissionType;
+            if (ptr[indexToEdit].transmissionType != "auto" && ptr[indexToEdit].transmissionType != "Auto" && ptr[indexToEdit].transmissionType != "manual" && ptr[indexToEdit].transmissionType != "Manual")
+            {
+                cout << "\nEnter \"Auto\" or \"Manual\" only.\n";
+                goto err1;
+            }
+            break;
+        }
+
+        case '4':
+        {
+            cin.ignore();
+            cout << "\nEnter briefly about Faults in " << ptr[indexToEdit].vehicleType << ": ";
+            getline(cin, ptr[indexToEdit].fault);
+            break;
+        }
+
+        case '0':
+        {
+            remove("SportsCar Record.txt");
+            for (int i = 0; i < noOfEntries; ++i)
+                ptr[i].dataRecord();
+            return;
+        }
+
+        default:
+        {
+            cout << "\nInvalid Input. Enter again.\n";
+            cin.ignore();
+            cout<<"\nPress Enter key to continue\n";
+            cin.get();
+            goto re;
+        }
+    }
+    goto re;
+}
+
 void employeeEdit(Employee* ptr,int noOfEntries,int indexToEdit){
     char menu; //variable bing used to navigate in menu
     re: //goto statement label
-    cout<<"Enter 1 to edit Employee Name.\n"
+    system("clear");
+    cout<<"\n\n\t\t\tEdit Employee Data\n\nEnter 1 to edit Employee Name.\n"
           "Enter 2 to edit Employee Contact Number.\n"
           "Enter 3 to edit Employee Address.\n"
           "Enter 4 to edit Employee Salary.\n"
@@ -988,39 +1206,39 @@ void employeeEdit(Employee* ptr,int noOfEntries,int indexToEdit){
     cin>>menu; //command for input
     switch (menu) { //switch cases being used to create menu
         case '1':{
-            cout<<"Enter First Name:\n";
+            cout<<"\nEnter First Name: ";
             cin>>ptr[indexToEdit].first_name;
-            cout<<"Enter Second Name:\n";
+            cout<<"\nEnter Second Name: ";
             cin>>ptr[indexToEdit].second_name;
             break;
         }
 
         case '2':{
-            cout<<"Enter Contact Number:\n";
+            cout<<"\nEnter Contact Number: ";
             cin>>ptr[indexToEdit].contact_no;
             break;
         }
 
         case '3':{
             int i;string s;
-            cout << "Enter Customer City Name:" << endl;
+            cout << "\nEnter Customer City Name: ";
             cin >> s;
             ptr[indexToEdit].address.setCityName(s);
-            cout << "Enter Customer Area Name:" << endl;
+            cout << "\nEnter Customer Area Name: ";
             cin.ignore();
             getline(cin, s);
             ptr[indexToEdit].address.setArea(s);
-            cout << "Enter Customer Street Number:" << endl;
+            cout << "\nEnter Customer Street Number: ";
             cin >> i;
             ptr[indexToEdit].address.setStreetNumber(i);
-            cout << "Enter Customer House Number:" << endl;
+            cout << "\nEnter Customer House Number: ";
             cin >> i;
             ptr[indexToEdit].address.setHouseNumber(i);
             break;
         }
 
         case '4':{
-            cout<<"Enter Salary of Employee:\n";
+            cout<<"\nEnter Salary of Employee: ";
             cin>>ptr[indexToEdit].salary;
             break;
         }
@@ -1034,9 +1252,14 @@ void employeeEdit(Employee* ptr,int noOfEntries,int indexToEdit){
         }
 
         default:{
-            cout<<"Invalid Input. Enter again.\n";
+            cout<<"\nInvalid Input. Enter again.\n";
+            cin.ignore();
+            cout<<"\nPress Enter key to continue\n";
+            cin.get();
             goto re;
         }
     }
+    cout<<"\n\nEmployee Data edited\n";
+    Sleep(1500);
     goto re;
 }

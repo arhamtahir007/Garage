@@ -7,10 +7,10 @@ void Hatchback:: vehicleReturn() {   //virtual function call as in other car cla
 
 istream & operator >>(istream& in ,Hatchback& obj){
     obj.generalInput();
-    cout<<"Enter number of airbags"<<endl;
+    cout<<"\nEnter number of airbags: ";
     in>>obj.airBags;
 
-    cout<<"Enter type of Power locks"<<endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
+    cout<<"\nEnter type of Power locks: ";  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
     in>>obj.powerLocks;
     while (true) {
         if (obj.powerLocks != "single" && obj.powerLocks != "Single" && obj.powerLocks != "dual" &&
@@ -33,7 +33,7 @@ istream & operator >>(istream& in ,Hatchback& obj){
             break;
     }
     while(true) {
-        if (obj.noOfSeats != 5) {
+        if (obj.noOfSeats != 5 && obj.noOfSeats != 4) {
             cout << "Invalid Number of Seats, Enter again.\n";
             cout << "Enter no of Seats:\n";
             in >> obj.noOfSeats;
@@ -56,7 +56,7 @@ istream & operator >>(istream& in ,Hatchback& obj){
 }
 ostream &operator << (ostream& out,const Hatchback& obj) {
     obj.generalOutput();
-    out<<"PowerLocks Type: "<<obj.powerLocks<<endl;
+    out<<"\nPowerLocks Type: "<<obj.powerLocks<<endl;
     out<<"AirBags Numbers: "<<obj.airBags<<endl;
     return out;
 }

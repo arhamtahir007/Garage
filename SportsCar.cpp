@@ -9,9 +9,9 @@ ostream &operator << (ostream& o,const SportsCar& temp) {
 
 istream &operator >> (istream& i,SportsCar& temp) {
     temp.generalInput();
-    cout<<"Enter Turbo Type:\n";
+    cout<<"\nEnter Turbo Type: ";
     i>>temp.turboType;
-    cout<<"Enter Spoiler Type:\n";
+    cout<<"\nEnter Spoiler Type: ";
     i>>temp.spoilerType;
 
     sc0:
