@@ -34,6 +34,7 @@ int main(){
             }
 
             case '0':{
+                LogIn::releaseInstance();
                 return 0; //end of program
             }
 
@@ -45,6 +46,7 @@ int main(){
         goto re;
     }
     else{
+        LogIn::releaseInstance();
         return 0;
     }
 }

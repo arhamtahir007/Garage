@@ -281,7 +281,7 @@ void removeEmployee(int mode) {
             }
         }
     }
-    
+
     if (indexToRemove >= 0) {
         if (mode == 0) {
             remove("Employee Record.txt");
