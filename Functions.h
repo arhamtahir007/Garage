@@ -21,7 +21,7 @@ void payment();
 
 void employeeManagement();
 
-void removeEmployee();
+void removeEmployee(int mode);
 
 void removeCustomer(int);
 
@@ -42,3 +42,5 @@ void sedanEdit(Sedan*,int,int);
 void hatchBackEdit(Hatchback*,int,int);
 
 void sportsCarEdit(SportsCar*,int,int);
+
+void employeeEdit(Employee*,int,int);

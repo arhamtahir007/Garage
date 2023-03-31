@@ -153,8 +153,9 @@ void employeeManagement() {
     re: //goto statement label
     cout << "Enter 1 to search for an Employee.\n"
             "Enter 2 to add an Employee.\n"
-            "Enter 3 to remove an Employee.\n"
-            "Enter 4 to see all Employee Data.\n"
+            "Enter 3 to edit an Employee Data.\n"
+            "Enter 4 to remove an Employee.\n"
+            "Enter 5 to see all Employee Data.\n"
             "Enter 0 to go back.\n"; //command for output
     cin >> menu; //command for input
     switch (menu) { //switch cases being used to create menu
@@ -173,12 +174,17 @@ void employeeManagement() {
             break;
         }
 
-        case '3': {
-            removeEmployee();
+        case '3':{
+            removeEmployee(1);
             break;
         }
 
         case '4': {
+            removeEmployee(0);
+            break;
+        }
+
+        case '5': {
             readFromFileEmployee();
             break;
         }
@@ -238,7 +244,7 @@ Employee searchEmployee() {
     return null;
 }
 
-void removeEmployee() {
+void removeEmployee(int mode) {
     string counter, name1st, name2nd;
     fstream read("Employee Record.txt", ios::in);
     int noOfEntries = 0;
@@ -279,20 +285,26 @@ void removeEmployee() {
         cout<<removeEmp[i];
     }
     if (indexToRemove >= 0) {
-        remove("Employee Record.txt");
-        for (int i = 0; i < noOfEntries; ++i) {
-            if (i != indexToRemove) {
-                removeEmp[i].writeToFile();
+        if (mode == 0) {
+            remove("Employee Record.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                if (i != indexToRemove) {
+                    removeEmp[i].writeToFile();
+                }
+            }
+            char asking[] = "Employee has been Successfully Removed.\n";
+            for (int i = 0; asking[i] != '\0'; i++) {
+                cout << asking[i];
+                cout.flush();
+                if (asking[i] == '\n')
+                    Sleep(500);
+                else
+                    Sleep(5);
             }
         }
-        char asking[] = "Employee has been Successfully Removed.\n";
-        for (int i = 0; asking[i] != '\0'; i++) {
-            cout << asking[i];
-            cout.flush();
-            if (asking[i] == '\n')
-                Sleep(500);
-            else
-                Sleep(5);
+        else if (mode == 1){
+            employeeEdit(removeEmp,noOfEntries,indexToRemove);
+            return;
         }
     } else {
         char asking[] = "Employee Record Not Found.\n";
@@ -644,8 +656,7 @@ void customerEdit(Customer* ptr,int noOfEntries,int indexToEdit){
     cout<<"Enter 1 to edit Customer Name.\n"
           "Enter 2 to edit Customer Contact Number.\n"
           "Enter 3 to edit Customer Address.\n"
-          "Enter 4 to edit Customer's Vehicle Registration Number.\n "
-          "Enter 5 to edit Customer's Vehicle Details.\n"
+          "Enter 4 to edit Customer's Vehicle Details.\n"
           "Enter 0 to go back.\n"; //command for output
     cin>>menu; //command for input
     switch (menu) { //switch cases being used to create menu
@@ -681,14 +692,20 @@ void customerEdit(Customer* ptr,int noOfEntries,int indexToEdit){
             break;
         }
 
-        case '4':{
-            numPlateChange = ptr[indexToEdit].number_plate;
-            cout<<"Enter Vehicle Registration Number:\n";
-            cin>>ptr[indexToEdit].number_plate;
-            break;
-        }
-
-        case '5': {
+        case '4': {
+            char numPlate;
+            caseIV:
+            cout << "Do you wish to change Vehicle Registration Number? (y/n)\n";
+            cin >> numPlate;
+            if (numPlate != 'y' && numPlate != 'n') {
+                cout << "Invalid Input. Enter Again:\n";
+                goto caseIV; //goto line 690
+            }
+            if (numPlate == 'y') {
+                numPlateChange = ptr[indexToEdit].number_plate;
+                cout << "Enter Vehicle Registration Number:\n";
+                cin >> ptr[indexToEdit].number_plate;
+            }
             if (ptr[indexToEdit].getVehicleType() == "Sedan") {
                 removeSedan(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
             } else if (ptr[indexToEdit].getVehicleType() == "HatchBack") {
@@ -956,6 +973,70 @@ void sportsCarEdit(SportsCar* ptr,int noOfEntries,int indexToEdit) {
 
         default: {
             cout << "Invalid Input. Enter again.\n";
+            goto re;
+        }
+    }
+    goto re;
+}
+
+void employeeEdit(Employee* ptr,int noOfEntries,int indexToEdit){
+    char menu; //variable bing used to navigate in menu
+    re: //goto statement label
+    cout<<"Enter 1 to edit Employee Name.\n"
+          "Enter 2 to edit Employee Contact Number.\n"
+          "Enter 3 to edit Employee Address.\n"
+          "Enter 4 to edit Employee Salary.\n"
+          "Enter 0 to go back.\n"; //command for output
+    cin>>menu; //command for input
+    switch (menu) { //switch cases being used to create menu
+        case '1':{
+            cout<<"Enter First Name:\n";
+            cin>>ptr[indexToEdit].first_name;
+            cout<<"Enter Second Name:\n";
+            cin>>ptr[indexToEdit].second_name;
+            break;
+        }
+
+        case '2':{
+            cout<<"Enter Contact Number:\n";
+            cin>>ptr[indexToEdit].contact_no;
+            break;
+        }
+
+        case '3':{
+            int i;string s;
+            cout << "Enter Customer City Name:" << endl;
+            cin >> s;
+            ptr[indexToEdit].address.setCityName(s);
+            cout << "Enter Customer Area Name:" << endl;
+            cin.ignore();
+            getline(cin, s);
+            ptr[indexToEdit].address.setArea(s);
+            cout << "Enter Customer Street Number:" << endl;
+            cin >> i;
+            ptr[indexToEdit].address.setStreetNumber(i);
+            cout << "Enter Customer House Number:" << endl;
+            cin >> i;
+            ptr[indexToEdit].address.setHouseNumber(i);
+            break;
+        }
+
+        case '4':{
+            cout<<"Enter Salary of Employee:\n";
+            cin>>ptr[indexToEdit].salary;
+            break;
+        }
+
+        case '0':{
+            remove("Employee Record.txt");
+            for (int i = 0; i < noOfEntries; ++i) {
+                ptr[i].writeToFile();
+            }
+            return;
+        }
+
+        default:{
+            cout<<"Invalid Input. Enter again.\n";
             goto re;
         }
     }
