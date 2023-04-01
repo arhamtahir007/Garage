@@ -1,40 +1,36 @@
-//
-// Created by HP on 3/23/2023.
-//
-
 #include "Employee.h"
 
 istream &operator>>(istream &input, Employee &person) {
     int i;string s;
-    cout<<"Enter Employee First Name:"<<endl;
+    cout<<"\nEnter Employee First Name: ";
     input>>person.first_name;
-    cout<<"Enter Employee Second Name:"<<endl;
+    cout<<"\nEnter Employee Second Name: ";
     input>>person.second_name;
-    cout<<"Enter Employee Contact Number:"<<endl;
+    cout<<"\nEnter Employee Contact Number: ";
     input>>person.contact_no;
-    cout<<"Enter Employee Monthly Salary:"<<endl;
+    cout<<"\nEnter Employee Monthly Salary: ";
     input>>person.salary;
-    cout<<"Enter Employee City Name:"<<endl;
+    cout<<"\nEnter Employee City Name: ";
     input>>s; person.address.setCityName(s);
-    cout<<"Enter Employee Area Name:"<<endl;
+    cout<<"\nEnter Employee Area Name: ";
     cin.ignore();
     getline(input,s); person.address.setArea(s);
-    cout<<"Enter Employee Street Number:"<<endl;
+    cout<<"\nEnter Employee Street Number: ";
     input>>i; person.address.setStreetNumber(i);
-    cout<<"Enter Customer House Number:"<<endl;
+    cout<<"\nEnter Customer House Number: ";
     input>>i; person.address.setHouseNumber(i);
     return input;
 }
 
 ostream &operator<<(ostream &output, const Employee &person) {
-    output<<"First Name: "<<person.first_name<<endl;
-    output<<"Second Name: "<<person.second_name<<endl;
-    output<<"Contact Number: "<<person.contact_no<<endl;
-    output<<"Salary: "<<person.salary<<" $"<<endl;
-    output<<"City Name: "<<person.address.getCityName()<<endl;
-    output<<"Area Name: "<<person.address.getArea()<<endl;
-    output<<"Street Number: "<<person.address.getStreetNumber()<<endl;
-    output<<"House Number: "<<person.address.getHouseNumber()<<endl;
+    output<<"\nFirst Name: "<<person.first_name<<endl;
+    output<<"\nSecond Name: "<<person.second_name<<endl;
+    output<<"\nContact Number: "<<person.contact_no<<endl;
+    output<<"\nSalary: "<<person.salary<<" $"<<endl;
+    output<<"\nCity Name: "<<person.address.getCityName()<<endl;
+    output<<"\nArea Name: "<<person.address.getArea()<<endl;
+    output<<"\nStreet Number: "<<person.address.getStreetNumber()<<endl;
+    output<<"\nHouse Number: "<<person.address.getHouseNumber()<<endl;
     return output;
 }
 

@@ -1,7 +1,3 @@
-//
-// Created by fajar.pk on 3/21/2023.
-//
-
 #ifndef GARAGE_ADDRESS_H
 #define GARAGE_ADDRESS_H
 

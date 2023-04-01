@@ -1,7 +1,3 @@
-//
-// Created by fajar.pk on 3/21/2023.
-//
-
 #include "Address.h"
 void Address:: setCityName(string x){
     city_name=x;

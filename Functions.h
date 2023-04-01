@@ -1,7 +1,3 @@
-//
-// Created by HP on 3/26/2023.
-//
-
 #ifndef SEDAN_CPP_FUNCTIONS_H
 #define SEDAN_CPP_FUNCTIONS_H
 
@@ -33,6 +29,8 @@ void removeHatchBack(string regNum,string numPlateChange,int);
 
 void removeSportsCar(string regNum,string numPlateChange,int);
 
+void removeBus(string, string, int);
+
 void viewAllCusVeh();
 
 void customerEdit(Customer*,int,int);
@@ -42,5 +40,7 @@ void sedanEdit(Sedan*,int,int);
 void hatchBackEdit(Hatchback*,int,int);
 
 void sportsCarEdit(SportsCar*,int,int);
+
+void busEdit(Bus*, int, int);
 
 void employeeEdit(Employee*,int,int);

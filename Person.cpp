@@ -1,11 +1,3 @@
-//
-// Created by fajar.pk on 3/21/2023.
-//
-
-//
-// Created by fajar.pk on 3/20/2023.
-//
-
 #include "Person.h"
 
 string Person::setFirstName( string n) {

@@ -1,0 +1,2 @@
+2 2 4 50 4 black auto Bus 1 fault in bus
+4040 2 4 40 3300 Red auto Bus 1 shockabsorbers not working

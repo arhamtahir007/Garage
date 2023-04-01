@@ -1,12 +1,9 @@
-//
-// Created by HP on 3/23/2023.
-//
-
 #ifndef MAIN_CPP_CUSTOMERLINKVEHICLE_H
 #define MAIN_CPP_CUSTOMERLINKVEHICLE_H
 
 #endif //MAIN_CPP_CUSTOMERLINKVEHICLE_H
 #include "Hatchback.h"
+#include "Bus.h"
 
 template<typename T>
 class CusVeh{ //This class will be used for association and aggregation

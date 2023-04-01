@@ -1,41 +1,37 @@
-//
-// Created by HP on 3/18/2023.
-//
-
 #include "Vehicle.h"
 
 void Vehicle::generalInput(){
-    cout<<"\nEnter no of Doors:\n";//bat suno apni apni Car k operator overloading m apni car k mutabik
+    cout<<"\nEnter no of Doors: ";//bat suno apni apni Car k operator overloading m apni car k mutabik
     cin>>noOfDoors;                // doors, seats, or tyres k check laga dena refrence k liye SportsCar ki cpp
-    cout<<"Enter no of Seats:\n";  // file m cin ki operator over loading check karo....
+    cout<<"\nEnter no of Seats: ";  // file m cin ki operator over loading check karo....
     cin>>noOfSeats;                // :D I believe in you ( ´･･)ﾉ(._.`)
-    cout<<"Enter no of Tyres:\n";
+    cout<<"\nEnter no of Tyres: ";
     cin>>noOfTyres;
-    cout<<"Enter Engine Capacity:\n";
+    cout<<"\nEnter Engine Capacity: ";
     cin>>engineCC;
     gI:
-    cout<<"Enter Transmission Type:\n";
+    cout<<"\nEnter Transmission Type: ";
     cin>>transmissionType;
     if (transmissionType != "auto" && transmissionType != "Auto" && transmissionType != "manual" && transmissionType != "Manual"){
         cout<<"Enter \"Auto\" or \"Manual\" only.\n";
         goto gI;
     }
-    cout<<"Enter Color:\n";
+    cout<<"\nEnter Color: ";
     cin>>color;
     cin.ignore();
-    cout<<"Enter briefly about Faults in "<<vehicleType<<":\n";
+    cout<<"\nEnter briefly about Faults in "<<vehicleType<<": ";
     getline(cin,fault);
 }
 
 void Vehicle::generalOutput() const {
-    cout<<"\nVehicle Type: "<<vehicleType<<endl;
-    cout<<"Engine Capacity: "<<engineCC<<" CC"<<endl;
-    cout<<"Transmission Type: "<<transmissionType<<endl;
-    cout<<"Number of Doors: "<<noOfDoors<<endl;
-    cout<<"Number of Seats: "<<noOfSeats<<endl;
-    cout<<"Number of Tyres: "<<noOfTyres<<endl;
-    cout<<"Registration Number: "<<numPlate<<endl;
-    cout<<"Faults: "<<fault<<endl;
+    cout<<"\n\nVehicle Type: "<<vehicleType;
+    cout<<"\n\nEngine Capacity: "<<engineCC<<" CC";
+    cout<<"\n\nTransmission Type: "<<transmissionType;
+    cout<<"\n\nNumber of Doors: "<<noOfDoors;
+    cout<<"\n\nNumber of Seats: "<<noOfSeats;
+    cout<<"\n\nNumber of Tyres: "<<noOfTyres;
+    cout<<"\n\nRegistration Number: "<<numPlate;
+    cout<<"\n\nFaults: "<<fault<<endl<<endl;
 }
 
 string Vehicle::getVehicleType() {

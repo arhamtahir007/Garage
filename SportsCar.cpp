@@ -1,7 +1,3 @@
-//
-// Created by HP on 3/18/2023.
-//
-
 #include "SportsCar.h"
 
 ostream &operator << (ostream& o,const SportsCar& temp) {
@@ -13,9 +9,9 @@ ostream &operator << (ostream& o,const SportsCar& temp) {
 
 istream &operator >> (istream& i,SportsCar& temp) {
     temp.generalInput();
-    cout<<"Enter Turbo Type:\n";
+    cout<<"\nEnter Turbo Type: ";
     i>>temp.turboType;
-    cout<<"Enter Spoiler Type:\n";
+    cout<<"\nEnter Spoiler Type: ";
     i>>temp.spoilerType;
 
     sc0:
@@ -54,7 +50,7 @@ void SportsCar::vehicleReturn() {
 void SportsCar::dataRecord() {
     fstream in("Sports Car Record.txt",ios::out | ios::app);
     in<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "<<color<<" "
-    <<transmissionType<<" "<<vehicleType<<" "<<turboType<<" "<<spoilerType<<" "<<fault;
+    <<transmissionType<<" "<<vehicleType<<" "<<turboType<<" "<<spoilerType<<" "<<fault<<endl;
     in.close();
 }
 

@@ -1,7 +1,3 @@
-//
-// Created by fajar.pk on 3/23/2023.
-//
-
 #include "Hatchback.h"
 void Hatchback:: vehicleReturn() {   //virtual function call as in other car classes
     cout<<"Classification of Car: "<<vehicleType<<endl;
@@ -11,10 +7,10 @@ void Hatchback:: vehicleReturn() {   //virtual function call as in other car cla
 
 istream & operator >>(istream& in ,Hatchback& obj){
     obj.generalInput();
-    cout<<"Enter number of airbags"<<endl;
+    cout<<"\nEnter number of airbags: ";
     in>>obj.airBags;
 
-    cout<<"Enter type of Power locks"<<endl;  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
+    cout<<"\nEnter type of Power locks: ";  // door locking ability of car(single basically automatic system k bahir se lock hojaty hain or dual ka either way )
     in>>obj.powerLocks;
     while (true) {
         if (obj.powerLocks != "single" && obj.powerLocks != "Single" && obj.powerLocks != "dual" &&
@@ -37,7 +33,7 @@ istream & operator >>(istream& in ,Hatchback& obj){
             break;
     }
     while(true) {
-        if (obj.noOfSeats != 5) {
+        if (obj.noOfSeats != 5 && obj.noOfSeats != 4) {
             cout << "Invalid Number of Seats, Enter again.\n";
             cout << "Enter no of Seats:\n";
             in >> obj.noOfSeats;
@@ -60,14 +56,14 @@ istream & operator >>(istream& in ,Hatchback& obj){
 }
 ostream &operator << (ostream& out,const Hatchback& obj) {
     obj.generalOutput();
-    out<<"PowerLocks Type: "<<obj.powerLocks<<endl;
+    out<<"\nPowerLocks Type: "<<obj.powerLocks<<endl;
     out<<"AirBags Numbers: "<<obj.airBags<<endl;
     return out;
 }
 
 
 void Hatchback::dataRecord(){
-    ofstream input("Hatchback Record.txt",ios::out | ios::app);
+    ofstream input("Hatch Back Record.txt",ios::out | ios::app);
     input<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "
          <<color<<" "<<transmissionType<<" "<<vehicleType<<" "<<airBags<<" "<<powerLocks<<" "<<fault<<endl;
     input.close();
@@ -76,7 +72,7 @@ void Hatchback::dataRecord(){
 Hatchback Hatchback:: dataReading(string temp) {
     Hatchback car;
     string input;
-    ifstream output("HatchBack Record.txt");
+    ifstream output("Hatch Back Record.txt");
     int noOfEntries = 0;
     while (!output.eof()) {
         getline(output, input);

@@ -1,7 +1,3 @@
-//
-// Created by HP on 3/23/2023.
-//
-
 #include "Customer.h"
 
 string Customer::getNumberPlate() {
@@ -25,39 +21,39 @@ string Customer::setVehicleType(string x) {
 istream &operator>>(istream &input, Customer &person) {
     int i;
     string s;
-    cout << "Enter Customer First Name:" << endl;
+    cout << "\nEnter Customer First Name: ";
     input >> person.first_name;
-    cout << "Enter Customer Second Name:" << endl;
+    cout << "\nEnter Customer Second Name: ";
     input >> person.second_name;
-    cout << "Enter Customer Contact Number:" << endl;
+    cout << "\nEnter Customer Contact Number: ";
     input >> person.contact_no;
-    cout << "Enter Customer Vehicle Registration Number:" << endl;
+    cout << "\nEnter Customer Vehicle Registration Number: ";
     input >> person.number_plate;
-    cout << "Enter Customer City Name:" << endl;
+    cout << "\nEnter Customer City Name: ";
     input >> s;
     person.address.setCityName(s);
-    cout << "Enter Customer Area Name:" << endl;
+    cout << "\nEnter Customer Area Name: ";
     cin.ignore();
     getline(input, s);
     person.address.setArea(s);
-    cout << "Enter Customer Street Number:" << endl;
+    cout << "\nEnter Customer Street Number: ";
     input >> i;
     person.address.setStreetNumber(i);
-    cout << "Enter Customer House Number:" << endl;
+    cout << "\nEnter Customer House Number:";
     input >> i;
     person.address.setHouseNumber(i);
     return input;
 }
 
 ostream &operator<<(ostream &output, const Customer &person) {
-    output << "First Name: " << person.first_name << endl;
-    output << "Second Name: " << person.second_name << endl;
-    output << "Contact Number: " << person.contact_no << endl;
-    output << "Vehicle Registration Number: " << person.number_plate << endl;
-    output << "City Name: " << person.address.getCityName() << endl;
-    output << "Area Name: " << person.address.getArea() << endl;
-    output << "Street Number: " << person.address.getStreetNumber() << endl;
-    output << "House Number: " << person.address.getHouseNumber() << endl;
+    output << "\nFirst Name: " << person.first_name << endl;
+    output << "\nSecond Name: " << person.second_name << endl;
+    output << "\nContact Number: " << person.contact_no << endl;
+    output << "\nVehicle Registration Number: " << person.number_plate << endl;
+    output << "\nCity Name: " << person.address.getCityName() << endl;
+    output << "\nArea Name: " << person.address.getArea() << endl;
+    output << "\nStreet Number: " << person.address.getStreetNumber() << endl;
+    output << "\nHouse Number: " << person.address.getHouseNumber() << endl;
     return output;
 }
 

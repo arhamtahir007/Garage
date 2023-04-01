@@ -1,7 +1,3 @@
-//
-// Created by HP on 3/24/2023.
-//
-
 #include "LogIn.h"
 
 string LogIn::getUserName() {
@@ -46,15 +42,19 @@ int userLogIn() {
     LogIn* logIn = LogIn::getInstance();
     static int tryCounter = 3;
     reLog:
-    cout<<"Enter User Name:\n";
+    system("clear");
+    cout<<"\n\n\t\t\t\tLOGIN\n\nEnter User Name: ";
     logIn->setUserName();
-    cout<<"Enter Password:\n";
+    cout<<"\nEnter Password: ";
     logIn->setPassword();
     if (logIn->getUserName() != logIn->getMatchUser() || logIn->getPassword() != logIn->getMatchPass()){
         if (tryCounter != 0){
             --tryCounter;
-            cout<<"Invalid User Name or Password!\n";
-            cout<<tryCounter<<" more try left.\n";
+            cout<<"\n\t\t\tInvalid User Name or Password!\n\n";
+            cout<<tryCounter<<" more tries left";
+            cin.ignore();
+            cout<<"\n\nPress Enter Key to continue\n\n";
+            cin.get();              //next line executes only when user presses enter key
             goto reLog;
         }
         else{

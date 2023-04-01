@@ -1,7 +1,3 @@
-//
-// Created by HP on 3/24/2023.
-//
-
 #ifndef MAIN_CPP_LOGIN_H
 #define MAIN_CPP_LOGIN_H
 
@@ -9,6 +5,7 @@
 
 #include <iostream>
 #include <windows.h>
+
 using namespace std;
 
 class LogIn{

@@ -1,7 +1,3 @@
-//
-// Created by HP on 3/18/2023.
-//
-
 #ifndef GARAGE_VEHICLE_H
 #define GARAGE_VEHICLE_H
 
@@ -37,7 +33,6 @@ public:
         vehicleType = "";
     }
 
-    string getVehicleType();
     string setNumPlate(string);
 
     void generalInput();
@@ -45,4 +40,5 @@ public:
 
     virtual void vehicleReturn() = 0;//ye polymorphism k liye hai sab apni spni class m is ka
                                      //function bananah. Refrence k liye SportsCar dekh lena
+    string getVehicleType();
 };

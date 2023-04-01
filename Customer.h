@@ -1,7 +1,3 @@
-//
-// Created by HP on 3/23/2023.
-//
-
 #ifndef MAIN_CPP_CUSTOMER_H
 #define MAIN_CPP_CUSTOMER_H
 
