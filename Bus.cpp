@@ -10,7 +10,7 @@ void Bus::dataRecord()
 {
     fstream ofile("Bus Record.txt", ios::out| ios::app);       //opening bus record file
     ofile<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "<<color<<" "
-    <<transmissionType<<" "<<vehicleType<<" "<<lcd<<" "<<fault;                     //writing all data of bus object to file
+    <<transmissionType<<" "<<vehicleType<<" "<<lcd<<" "<<fault<<endl;                     //writing all data of bus object to file
     ofile.close();          //closing file
 }
 
@@ -71,14 +71,23 @@ istream &operator >>(istream &in, Bus &a)
 {
     a.generalInput();
     string lcd;
+    err0:
     cout<<"\nLCD in bus? ";
     in>>lcd;
 
-    if(lcd == "yes" || lcd == "Yes")
+    if(lcd == "y" || lcd == "Y")
+    {
         a.lcd = true;
-    else
+    }
+    else if (lcd == "n" || lcd == "N")
+    {
         a.lcd = false;
-
+    }
+    else
+    {
+        cout<<"Invalid Input. Enter again:\n";
+        goto err0;
+    }
     err1:
     if (a.noOfDoors <= 0)
     {

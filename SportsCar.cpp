@@ -50,7 +50,7 @@ void SportsCar::vehicleReturn() {
 void SportsCar::dataRecord() {
     fstream in("Sports Car Record.txt",ios::out | ios::app);
     in<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "<<color<<" "
-    <<transmissionType<<" "<<vehicleType<<" "<<turboType<<" "<<spoilerType<<" "<<fault;
+    <<transmissionType<<" "<<vehicleType<<" "<<turboType<<" "<<spoilerType<<" "<<fault<<endl;
     in.close();
 }
 

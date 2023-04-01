@@ -9,7 +9,7 @@ void Sedan::vehicleReturn() {   //virtual function call as in other car classes
 Sedan Sedan::dataReading(string temp) {
     Sedan car;
     string input;
-    ifstream output("SedanRecords.txt");
+    ifstream output("Sedan Record.txt");
     int noOfEntries = 0;
     while (!output.eof()) {
         getline(output, input);
@@ -17,7 +17,7 @@ Sedan Sedan::dataReading(string temp) {
     }
     noOfEntries = noOfEntries - 1;
     output.close();
-    output.open("SedanRecords.txt", ios::in);
+    output.open("Sedan Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         output >> car.numPlate;
         output >> car.noOfDoors;
@@ -41,7 +41,7 @@ Sedan Sedan::dataReading(string temp) {
 }
 
 void Sedan::dataRecord() {
-    ofstream input("SedanRecords.txt", ios::out | ios::app);
+    ofstream input("Sedan Record.txt", ios::out | ios::app);
     input << numPlate << " " << noOfDoors << " " << noOfTyres << " " << noOfSeats << " " << engineCC << " " << color
           << " "
           << transmissionType << " " << vehicleType << " " << airBags << " " << powerLocks << " " << powerWindows << " "

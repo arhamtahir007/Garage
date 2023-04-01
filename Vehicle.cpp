@@ -31,7 +31,7 @@ void Vehicle::generalOutput() const {
     cout<<"\n\nNumber of Seats: "<<noOfSeats;
     cout<<"\n\nNumber of Tyres: "<<noOfTyres;
     cout<<"\n\nRegistration Number: "<<numPlate;
-    cout<<"\n\nFaults: "<<fault;
+    cout<<"\n\nFaults: "<<fault<<endl<<endl;
 }
 
 string Vehicle::getVehicleType() {

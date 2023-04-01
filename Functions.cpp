@@ -177,8 +177,8 @@ void payment() {
     file >> noOfVehRepaired;
     file.close();
     file.open("Sales Record.txt", ios::out | ios::trunc);
-    file << a1 << " " << totalSales + charged << " " << a2 << endl;
-    file << b1 << " " << noOfVehRepaired + 1 << endl;
+    file << "TotalSales: " << totalSales + charged << " " << "$" << endl;
+    file << "VehiclesRepaired: " << noOfVehRepaired + 1 << endl;
 }
 
 void employeeManagement() {
@@ -530,7 +530,7 @@ void removeCustomer(int mode) {
 void removeSedan(string regNum,string numPlateChange,int mode) {
     string input;
     int indexToRemove = -100;
-    ifstream output("Sedan Records.txt");
+    ifstream output("Sedan Record.txt");
     int noOfEntries = 0;
     while (!output.eof()) {
         getline(output, input);
@@ -539,7 +539,7 @@ void removeSedan(string regNum,string numPlateChange,int mode) {
     noOfEntries = noOfEntries - 1;
     output.close();
     auto *sedan = new Sedan[noOfEntries];
-    output.open("Sedan Records.txt", ios::in);
+    output.open("Sedan Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         output >> sedan[i].numPlate;
         output >> sedan[i].noOfDoors;
@@ -559,7 +559,7 @@ void removeSedan(string regNum,string numPlateChange,int mode) {
     }
     if (indexToRemove >= 0) {
         if (mode == 0) {
-            remove("Sedan Records.txt");
+            remove("Sedan Record.txt");
             for (int i = 0; i < noOfEntries; ++i) {
                 if (i != indexToRemove) {
                     sedan[i].dataRecord();
@@ -579,7 +579,7 @@ void removeSedan(string regNum,string numPlateChange,int mode) {
 void removeHatchBack(string regNum,string numPlateChange,int mode) {
     string input;
     int indexToRemove = -100;
-    ifstream output("HatchBack Record.txt");
+    ifstream output("Hatch Back Record.txt");
     int noOfEntries = 0;
     while (!output.eof()) {
         getline(output, input);
@@ -588,7 +588,7 @@ void removeHatchBack(string regNum,string numPlateChange,int mode) {
     noOfEntries = noOfEntries - 1;
     output.close();
     auto *hatchback = new Hatchback[noOfEntries];
-    output.open("HatchBack Record.txt", ios::in);
+    output.open("Hatch Back Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         output >> hatchback[i].numPlate;
         output >> hatchback[i].noOfDoors;
@@ -607,7 +607,7 @@ void removeHatchBack(string regNum,string numPlateChange,int mode) {
     }
     if (indexToRemove >= 0) {
         if (mode == 0) {
-            remove("HatchBack Record.txt");
+            remove("Hatch Back Record.txt");
             for (int i = 0; i < noOfEntries; ++i) {
                 if (i != indexToRemove) {
                     hatchback[i].dataRecord();
@@ -636,7 +636,7 @@ void removeSportsCar(string regNum,string numPlateChange,int mode) {
     noOfEntries = noOfEntries - 1;
     out.close();
     auto *sc = new SportsCar[noOfEntries];
-    out.open("SportsCar Record.txt", ios::in);
+    out.open("Sports Car Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         out >> sc[i].numPlate;
         out >> sc[i].noOfDoors;
@@ -655,7 +655,7 @@ void removeSportsCar(string regNum,string numPlateChange,int mode) {
     }
     if (indexToRemove >= 0) {
         if (mode == 0) {
-            remove("SportsCar Record.txt");
+            remove("Sports Car Record.txt");
             for (int i = 0; i < noOfEntries; ++i) {
                 if (i != indexToRemove) {
                     sc[i].dataRecord();
@@ -685,7 +685,7 @@ void removeBus(string regNum, string numPlateChange, int mode)
     noOfEntries = noOfEntries - 1;
     ifile.close();
     auto *bus = new Bus [noOfEntries];
-    ifile.open("SportsCar Record.txt", ios::in);
+    ifile.open("Bus Record.txt", ios::in);
     for (int i = 0; i < noOfEntries; ++i) {
         ifile >> bus[i].numPlate;
         ifile >> bus[i].noOfDoors;
@@ -705,7 +705,7 @@ void removeBus(string regNum, string numPlateChange, int mode)
     if (indexToRemove >= 0)
     {
         if (mode == 0) {
-            remove("SportsCar Record.txt");
+            remove("Bus Record.txt");
             for (int i = 0; i < noOfEntries; ++i)
             {
                 if (i != indexToRemove)
@@ -834,34 +834,13 @@ void customerEdit(Customer* ptr,int noOfEntries,int indexToEdit){
         }
 
         case '4': {
-            char numPlate;
-            caseIV:
-            cout << "\nDo you wish to change Vehicle Registration Number? (y/n): ";
-            cin >> numPlate;
-            if (numPlate != 'y' && numPlate != 'n') {
-                cout << "\nInvalid Input. Enter Again:\n";
-                Sleep(800);
-                goto caseIV; //goto line 818
-            }
-            if (numPlate == 'y') {
-                numPlateChange = ptr[indexToEdit].number_plate;
-                cout << "\nEnter Vehicle Registration Number: ";
-                cin >> ptr[indexToEdit].number_plate;
-            }
-            if (ptr[indexToEdit].getVehicleType() == "Sedan")
-            {
+            if (ptr[indexToEdit].getVehicleType() == "Sedan") {
                 removeSedan(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
-            }
-            else if (ptr[indexToEdit].getVehicleType() == "HatchBack")
-            {
+            } else if (ptr[indexToEdit].getVehicleType() == "HatchBack") {
                 removeHatchBack(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
-            }
-            else if (ptr[indexToEdit].getVehicleType() == "SportsCar")
-            {
+            } else if (ptr[indexToEdit].getVehicleType() == "SportsCar") {
                 removeSportsCar(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
-            }
-            else if(ptr[indexToEdit].getVehicleType()=="Bus")
-            {
+            } else if (ptr[indexToEdit].getVehicleType() == "Bus") {
                 removeBus(ptr[indexToEdit].getNumberPlate(), numPlateChange, 1);
             }
             break;
@@ -964,7 +943,7 @@ void sedanEdit(Sedan* ptr,int noOfEntries,int indexToEdit){
         }
 
         case '0':{
-            remove("Sedan Records.txt");
+            remove("Sedan Record.txt");
             for (int i = 0; i < noOfEntries; ++i) {
                 ptr[i].dataRecord();
             }
@@ -1044,7 +1023,7 @@ void hatchBackEdit(Hatchback* ptr,int noOfEntries,int indexToEdit){
         }
 
         case '0': {
-            remove("HatchBack Record.txt");
+            remove("Hatch Back Record.txt");
             for (int i = 0; i < noOfEntries; ++i) {
                 ptr[i].dataRecord();
             }
@@ -1116,7 +1095,7 @@ void sportsCarEdit(SportsCar* ptr,int noOfEntries,int indexToEdit) {
         }
 
         case '0': {
-            remove("SportsCar Record.txt");
+            remove("Sports Car Record.txt");
             for (int i = 0; i < noOfEntries; ++i) {
                 ptr[i].dataRecord();
             }
@@ -1176,7 +1155,7 @@ void busEdit(Bus *ptr, int noOfEntries, int indexToEdit)
 
         case '0':
         {
-            remove("SportsCar Record.txt");
+            remove("Bus Record.txt");
             for (int i = 0; i < noOfEntries; ++i)
                 ptr[i].dataRecord();
             return;

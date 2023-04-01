@@ -63,7 +63,7 @@ ostream &operator << (ostream& out,const Hatchback& obj) {
 
 
 void Hatchback::dataRecord(){
-    ofstream input("Hatchback Record.txt",ios::out | ios::app);
+    ofstream input("Hatch Back Record.txt",ios::out | ios::app);
     input<<numPlate<<" "<<noOfDoors<<" "<<noOfTyres<<" "<<noOfSeats<<" "<<engineCC<<" "
          <<color<<" "<<transmissionType<<" "<<vehicleType<<" "<<airBags<<" "<<powerLocks<<" "<<fault<<endl;
     input.close();
@@ -72,7 +72,7 @@ void Hatchback::dataRecord(){
 Hatchback Hatchback:: dataReading(string temp) {
     Hatchback car;
     string input;
-    ifstream output("HatchBack Record.txt");
+    ifstream output("Hatch Back Record.txt");
     int noOfEntries = 0;
     while (!output.eof()) {
         getline(output, input);
